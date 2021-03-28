@@ -1,0 +1,21 @@
+Basically hw3 but larger
+
+Use JavaFX
+
+Server that contains the state of the board, will also check for winner
+
+Clients keep track of which cards they have in their hand
+Clients also keep a copy of the board, server sends updates
+
+3-4 clients will connect to the server
+
+Mechanics:
+Tile type
+Tile number
+Roads
+Settlements/Cities
+Robber
+Trading
+Resource Cards 
+Progress Cards
+Longest Road/Largest Army Cards
