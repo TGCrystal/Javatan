@@ -8,9 +8,11 @@ public class Player {
     private boolean hasLongestRoad;
     private boolean hasLargestArmy;
     private int victoryPoints;
+    // Color will be assigned
+    private PlayerColor color;
 
-    public Player() {
-
+    public Player(PlayerColor color) {
+        this.color = color;
     }
 
     public void addResourceCard(ResourceCard card) {
@@ -20,4 +22,17 @@ public class Player {
     public void addDevelopmentCard(DevelopmentCard card) {
 
     }
+
+    // Return ture if the card existed and was removed, false otherwise
+    public boolean removeResourceCard(ResourceCard card) {
+
+    }
+    public boolean removeDevelopmentCard(DevelopmentCard card) {
+
+    }
+
+    public ResourceCard removeRandomCard() {
+
+    }
+
 }

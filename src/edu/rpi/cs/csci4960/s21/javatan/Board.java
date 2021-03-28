@@ -19,4 +19,19 @@ public class Board {
     public Board() {
 
     }
+
+    // Return true if operation successful
+    public boolean addRoad(int row, int column, PlayerColor color) {
+
+    }
+    public boolean addBuilding(int row, int column, PlayerColor color) {
+
+    }
+    public boolean upgradeBuilding(int row, int column) {
+
+    }
+
+    public ArrayList<Tuple<ResourceCard, PlayerColor>> processTurn(int rollValue) {
+
+    }
 }
