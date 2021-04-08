@@ -4,11 +4,21 @@ package src.edu.rpi.cs.csci4960.s21.javatan;
 enum ResourceCardType = {BRICK, LUMBER, ORE, GRAIN, WOOL};
 
 /**
-* Stores which type it is using ResourceCardType
+* A resource card, stores which type it is using ResourceCardType
+*
+* @author Chuanfeng Xiong
+* @author Chris Lamberston
+* @author Ruben McWilliams
+* @author Trevor Crystal
 */
 public class ResourceCard extends Card {
-    
-    public ResourceCard(ResourceCardType type) {
+    private final ResourceCardType type;
 
+    public ResourceCard(ResourceCardType type) {
+        this.type = type;
+    }
+
+    public ResourceCardType getType() {
+        return this.type;
     }
 }
