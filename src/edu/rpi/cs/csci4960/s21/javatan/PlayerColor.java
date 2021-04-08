@@ -1,4 +1,4 @@
-package src.edu.rpi.cs.csci4960.s21.javatan;
+package edu.rpi.cs.csci4960.s21.javatan;
 
 /**
 * Indicates the player color of something, either no color, red, orange, white, or blue
