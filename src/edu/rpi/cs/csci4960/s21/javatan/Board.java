@@ -1,4 +1,4 @@
-package src.edu.rpi.cs.csci4960.s21.javatan;
+package edu.rpi.cs.csci4960.s21.javatan;
 
 /** Tile indices
            0,0    0,1    0,2

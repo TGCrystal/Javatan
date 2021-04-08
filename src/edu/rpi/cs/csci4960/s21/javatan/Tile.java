@@ -1,4 +1,4 @@
-package src.edu.rpi.cs.csci4960.s21.javatan;
+package edu.rpi.cs.csci4960.s21.javatan;
 
 enum TileType = {HILLS, FOREST, MOUNTAINS, FIELDS, PASTURE, DESERT};
 
@@ -39,6 +39,6 @@ public class Tile {
     * @return the number associated with this tile
     */
     public int getNum() {
-        
+
     }
 }

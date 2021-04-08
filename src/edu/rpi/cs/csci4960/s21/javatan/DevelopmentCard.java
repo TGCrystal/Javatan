@@ -1,5 +1,4 @@
-//enum for different types
-package src.edu.rpi.cs.csci4960.s21.javatan;
+package edu.rpi.cs.csci4960.s21.javatan;
 
 enum DevelopmentCardType = {KNIGHT, PROGRESS, VICTORY};
 
