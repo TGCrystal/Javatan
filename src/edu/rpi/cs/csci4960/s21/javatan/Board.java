@@ -28,7 +28,48 @@ public class Board {
     * Initializes the board, for now just default to main one found in manual
     */
     public Board() {
+        tiles = buildDefaultBoard();
+        roads = new Road[11][10];
 
+        robberRow = -1;
+        robberColumn = -1;
+    }
+
+    /**
+     * Sets up the tiles for the default board given in the manual
+     */
+    private Tile[][] buildDefaultBoard() {
+        Tile[][] tiles = new Tile[4][4];
+
+        // Row 0
+        tiles[0][0] = new Tile(TileType.MOUNTAINS, 10);
+        tiles[0][1] = new Tile(TileType.PASTURE, 2);
+        tiles[0][2] = new Tile(TileType.FOREST, 9);
+
+        // Row 1
+        tiles[1][0] = new Tile(TileType.FIELDS, 12);
+        tiles[1][1] = new Tile(TileType.HILLS, 6);
+        tiles[1][2] = new Tile(TileType.PASTURE, 4);
+        tiles[1][3] = new Tile(TileType.HILLS, 10);
+        
+        // Row 2
+        tiles[2][0] = new Tile(TileType.FIELDS, 9);
+        tiles[2][1] = new Tile(TileType.FOREST, 11);
+        tiles[2][2] = new Tile(TileType.DESERT, -1);
+        tiles[2][3] = new Tile(TileType.FOREST, 3);
+        tiles[2][4] = new Tile(TileType.MOUNTAINS, 8);
+
+        // Row 3
+        tiles[3][0] = new Tile(TileType.FOREST, 8);
+        tiles[3][1] = new Tile(TileType.MOUNTAINS, 3);
+        tiles[3][2] = new Tile(TileType.FIELDS, 4);
+        tiles[3][3] = new Tile(TileType.PASTURE, 5);
+
+        // Row 4
+        tiles[4][0] = new Tile(TileType.HILLS, 5);
+        tiles[4][1] = new Tile(TileType.FIELDS, 6);
+        tiles[4][2] = new Tile(TileType.PASTURE, 11);
+        return tiles;
     }
 
     /**
@@ -46,7 +87,7 @@ public class Board {
     */
     public boolean addRoad(int row, int column, PlayerColor color) throws
         IllegalArgumentException {
-
+            
     }
 
     /**

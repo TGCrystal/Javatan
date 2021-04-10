@@ -8,4 +8,4 @@ package edu.rpi.cs.csci4960.s21.javatan;
 * @author Ruben McWilliams
 * @author Trevor Crystal
 */
-public enum PlayerColor = {NONE, RED, ORANGE, WHITE, BLUE};
+public enum PlayerColor {NONE, RED, ORANGE, WHITE, BLUE};

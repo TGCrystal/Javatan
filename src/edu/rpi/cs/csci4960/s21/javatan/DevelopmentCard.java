@@ -1,6 +1,6 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
-enum DevelopmentCardType = {KNIGHT, PROGRESS, VICTORY};
+enum DevelopmentCardType {KNIGHT, PROGRESS, VICTORY};
 
 /**
 * A development card, stores which type it is using DevelopmentCardType

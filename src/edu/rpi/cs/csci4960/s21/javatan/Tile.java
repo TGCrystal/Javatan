@@ -1,6 +1,6 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
-enum TileType = {HILLS, FOREST, MOUNTAINS, FIELDS, PASTURE, DESERT};
+enum TileType {HILLS, FOREST, MOUNTAINS, FIELDS, PASTURE, DESERT};
 
 /**
 * Stores which type it is using TileType. Stores the number associated with it.
@@ -21,7 +21,8 @@ public class Tile {
     * @param num the number that must be rolled for this tile to produce a resource
     */
     public Tile(TileType type, int num) {
-
+        this.type = type;
+        this.num = num;
     }
 
     /**
@@ -30,7 +31,7 @@ public class Tile {
     * @return the type of this tile
     */
     public TileType getType() {
-
+        return this.type;
     }
 
     /**
@@ -39,6 +40,6 @@ public class Tile {
     * @return the number associated with this tile
     */
     public int getNum() {
-
+        return this.num;
     }
 }
