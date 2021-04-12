@@ -39,7 +39,8 @@ public class Player {
     * @param card the progress card to add
     */
     public void addResourceCard(ResourceCard card) {
-
+        //Chuanfeng Xiong
+        this.resourceCards.add(card);
     }
 
     /**
@@ -48,7 +49,8 @@ public class Player {
     * @param card the development card to add
     */
     public void addDevelopmentCard(DevelopmentCard card) {
-
+        //Chuanfeng Xiong
+        this.developmentCards.add(card);
     }
 
     /**
@@ -153,7 +155,7 @@ public class Player {
     *
     * @return the color of this player
     */
-    public PlayerCOlor getPlayerColor() {
+    public PlayerColor getPlayerColor() {
 
     }
 
