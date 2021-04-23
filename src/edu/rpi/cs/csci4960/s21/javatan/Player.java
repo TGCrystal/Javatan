@@ -1,6 +1,7 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
 * This class is used to keep track of the player's cards, color, and victory points
@@ -58,7 +59,10 @@ public class Player {
     * If the player already has the card, then nothing happens.
     */
     public void addLongestRoad() {
-
+        if (!hasLongestRoad) {
+            hasLongestRoad = true;
+            victoryPoints += 2;
+        }
     }
 
     /**
@@ -66,7 +70,10 @@ public class Player {
     * If the player already has the card, then nothing happens.
     */
     public void addLargestArmy() {
-
+        if (!hasLargestArmy) {
+            hasLargestArmy = true;
+            victoryPoints += 2;
+        }
     }
 
     /**
@@ -75,7 +82,7 @@ public class Player {
     * @param points the number of points to add
     */
     public void addVictoryPoints(int points) {
-
+        victoryPoints += points;
     }
 
     /**
@@ -86,7 +93,13 @@ public class Player {
     * @return true if the card was successfully removed, false otherwise
     */
     public boolean removeResourceCard(ResourceCardType cardType) {
-
+        for (int i = 0; i < resourceCards.size(); i++) {
+            if (resourceCards.get(i).getType() == cardType) {
+                resourceCards.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -97,7 +110,13 @@ public class Player {
     * @return true if the card was successfully removed, false otherwise
     */
     public boolean removeDevelopmentCard(DevelopmentCardType cardType) {
-
+        for (int i = 0; i < developmentCards.size(); i++) {
+            if (developmentCards.get(i).getType() == cardType) {
+                developmentCards.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -106,7 +125,11 @@ public class Player {
     * @return the card that was removed, null if the deck was empty before this function was called
     */
     public ResourceCard removeRandomCard() {
-
+        if (resourceCards.size() == 0)
+            return null;
+        Random rand = new Random();
+        int i = rand.nextInt(resourceCards.size());
+        return resourceCards.remove(i);
     }
 
     /**
@@ -114,7 +137,10 @@ public class Player {
     * If the player does not have the card, then nothing happens.
     */
     public void removeLongestRoad() {
-
+        if (hasLongestRoad) {
+            hasLongestRoad = false;
+            victoryPoints -= 2;
+        }
     }
 
     /**
@@ -122,7 +148,10 @@ public class Player {
     * If the player does not have the card, then nothing happens.
     */
     public void removeLargestArmy() {
-
+        if (hasLargestArmy) {
+            hasLargestArmy = false;
+            victoryPoints -= 2;
+        }
     }
 
     /**
@@ -131,7 +160,7 @@ public class Player {
     * @return true if this player has the longest road card
     */
     public boolean hasLongestRoad() {
-
+        return this.hasLongestRoad;
     }
 
     /**
@@ -140,7 +169,7 @@ public class Player {
     * @return true if this player has the largest army card
     */
     public boolean hasLargestArmy() {
-
+        return this.hasLargestArmy;
     }
 
     /**
@@ -149,7 +178,7 @@ public class Player {
     * @return the number of victory points
     */
     public int getVictoryPoints() {
-
+        return this.victoryPoints;
     }
 
     /**
@@ -158,7 +187,7 @@ public class Player {
     * @return the number of resource cards
     */
     public int getNumResourceCards() {
-
+        return this.resourceCards.size();
     }
 
     /**
@@ -167,7 +196,7 @@ public class Player {
     * @return the number of development cards
     */
     public int getNumDevelopmentCards() {
-
+        return this.developmentCards.size();
     }
 
     /**
@@ -176,7 +205,7 @@ public class Player {
     * @return the color of this player
     */
     public PlayerColor getPlayerColor() {
-
+        return this.color;
     }
 
 }

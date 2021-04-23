@@ -10,7 +10,8 @@ public class Road {
     * Creates a new road with no owner and no port
     */
     public Road() {
-
+        ownership = PlayerColor.NONE;
+        port = PortType.NONE;
     }
 
     /**
@@ -19,7 +20,8 @@ public class Road {
     * @param port the type of port to associate with this road
     */
     public Road(PortType port) {
-
+        ownership = PlayerColor.NONE;
+        this.port = port;
     }
 
     /**
@@ -28,7 +30,7 @@ public class Road {
     * @param newOwner the new owner of this road
     */
     public void setOwner(PlayerColor newOwner) {
-
+        ownership = newOwner;
     }
 
     /**
@@ -37,7 +39,7 @@ public class Road {
     * @return the color of the owner of this road
     */
     public PlayerColor getOwner() {
-
+        return ownership;
     }
 
     /**
@@ -46,6 +48,6 @@ public class Road {
     * @return the type of this port
     */
     public PortType getPort() {
-
+        return port;
     }
 }

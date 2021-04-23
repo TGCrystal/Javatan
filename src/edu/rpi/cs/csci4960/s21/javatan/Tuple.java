@@ -1,7 +1,9 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
 /**
-* A simple class to store a tuple
+* A simple class to store a tuple of two of any type of objects. The first type corresponds
+* to the first variable t, and the second type corresponds to the second variable k.
+* The tuple is immutable, the references can't be changed after creation.
 *
 * @author Chuanfeng Xiong
 * @author Chris Lamberston

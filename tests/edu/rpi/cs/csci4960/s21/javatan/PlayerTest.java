@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
+import org.junit.Test;
+
 public class PlayerTest {
     @Test
     public void colorTest() {
@@ -157,43 +159,43 @@ public class PlayerTest {
         boolean wool = false;
 
         assertEquals(6, player.getNumResourceCards());
-        while(player.getNumResourceCards() > 0) {
-            switch(player.removeRandomCard().getType()) {
-                case BRICK:
-                    if (!brick1)
-                        brick1 = true;
-                    else if (!brick2)
-                        brick2 = true;
-                    else
-                        assertFalse(true);
-                    break;
-                case LUMBER:
-                    if (!lumber)
-                        lumber = true;
-                    else
-                        assertFalse(true);
-                    break;
-                case ORE:
-                    if (!ore)
-                        ore = true;
-                    else
-                        assertFalse(true);
-                    break;
-                case GRAIN:
-                    if (!grain)
-                        grain = true;
-                    else
-                        assertFalse(true);
-                    break;
-                case WOOL:
-                    if (!wool)
-                        wool = true;
-                    else
-                        assertFalse(true);
-                    break;
-                default:
+        while (player.getNumResourceCards() > 0) {
+            switch (player.removeRandomCard().getType()) {
+            case BRICK:
+                if (!brick1)
+                    brick1 = true;
+                else if (!brick2)
+                    brick2 = true;
+                else
                     assertFalse(true);
-                    break;
+                break;
+            case LUMBER:
+                if (!lumber)
+                    lumber = true;
+                else
+                    assertFalse(true);
+                break;
+            case ORE:
+                if (!ore)
+                    ore = true;
+                else
+                    assertFalse(true);
+                break;
+            case GRAIN:
+                if (!grain)
+                    grain = true;
+                else
+                    assertFalse(true);
+                break;
+            case WOOL:
+                if (!wool)
+                    wool = true;
+                else
+                    assertFalse(true);
+                break;
+            default:
+                assertFalse(true);
+                break;
             }
         }
         assertEquals(0, player.getNumResourceCards());
