@@ -1,6 +1,7 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
 * This class is used to keep track of the player's cards, color, and victory points
@@ -36,21 +37,21 @@ public class Player {
     /**
     * Adds a given progress card to the player's hand
     *
-    * @param card the progress card to add
+    * @param cardType the type of progress card to add
     */
-    public void addResourceCard(ResourceCard card) {
+    public void addResourceCard(ResourceCardType cardType) {
         //Chuanfeng Xiong
-        this.resourceCards.add(card);
+        this.resourceCards.add(new ResourceCard(cardType));
     }
 
     /**
     * Adds a given development card to the player's hand
     *
-    * @param card the development card to add
+    * @param cardType the type of development card to add
     */
-    public void addDevelopmentCard(DevelopmentCard card) {
+    public void addDevelopmentCard(DevelopmentCardType cardType) {
         //Chuanfeng Xiong
-        this.developmentCards.add(card);
+        this.developmentCards.add(new DevelopmentCard(cardType));
     }
 
     /**
@@ -58,7 +59,10 @@ public class Player {
     * If the player already has the card, then nothing happens.
     */
     public void addLongestRoad() {
-
+        if (!hasLongestRoad) {
+            hasLongestRoad = true;
+            victoryPoints += 2;
+        }
     }
 
     /**
@@ -66,7 +70,10 @@ public class Player {
     * If the player already has the card, then nothing happens.
     */
     public void addLargestArmy() {
-
+        if (!hasLargestArmy) {
+            hasLargestArmy = true;
+            victoryPoints += 2;
+        }
     }
 
     /**
@@ -75,27 +82,41 @@ public class Player {
     * @param points the number of points to add
     */
     public void addVictoryPoints(int points) {
-
+        victoryPoints += points;
     }
 
     /**
     * Removes a given resource card from the player's hand, returns to indicate if the removal
     * was successful
     *
+    * @param cardType the type of resource card to remove
     * @return true if the card was successfully removed, false otherwise
     */
-    public boolean removeResourceCard(ResourceCard card) {
-
+    public boolean removeResourceCard(ResourceCardType cardType) {
+        for (int i = 0; i < resourceCards.size(); i++) {
+            if (resourceCards.get(i).getType() == cardType) {
+                resourceCards.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
     * Removes a given development card from the player's hand, returns to indicate if the removal
     * was successful
     *
+    * @param cardType the type of development card to remove
     * @return true if the card was successfully removed, false otherwise
     */
-    public boolean removeDevelopmentCard(DevelopmentCard card) {
-
+    public boolean removeDevelopmentCard(DevelopmentCardType cardType) {
+        for (int i = 0; i < developmentCards.size(); i++) {
+            if (developmentCards.get(i).getType() == cardType) {
+                developmentCards.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -104,7 +125,11 @@ public class Player {
     * @return the card that was removed, null if the deck was empty before this function was called
     */
     public ResourceCard removeRandomCard() {
-
+        if (resourceCards.size() == 0)
+            return null;
+        Random rand = new Random();
+        int i = rand.nextInt(resourceCards.size());
+        return resourceCards.remove(i);
     }
 
     /**
@@ -112,7 +137,10 @@ public class Player {
     * If the player does not have the card, then nothing happens.
     */
     public void removeLongestRoad() {
-
+        if (hasLongestRoad) {
+            hasLongestRoad = false;
+            victoryPoints -= 2;
+        }
     }
 
     /**
@@ -120,7 +148,28 @@ public class Player {
     * If the player does not have the card, then nothing happens.
     */
     public void removeLargestArmy() {
+        if (hasLargestArmy) {
+            hasLargestArmy = false;
+            victoryPoints -= 2;
+        }
+    }
 
+    /**
+    * Checks if the player has the longest road card
+    *
+    * @return true if this player has the longest road card
+    */
+    public boolean hasLongestRoad() {
+        return this.hasLongestRoad;
+    }
+
+    /**
+    * Checks if the player has the largest army card
+    *
+    * @return true if this player has the largest army card
+    */
+    public boolean hasLargestArmy() {
+        return this.hasLargestArmy;
     }
 
     /**
@@ -129,7 +178,7 @@ public class Player {
     * @return the number of victory points
     */
     public int getVictoryPoints() {
-
+        return this.victoryPoints;
     }
 
     /**
@@ -138,7 +187,7 @@ public class Player {
     * @return the number of resource cards
     */
     public int getNumResourceCards() {
-
+        return this.resourceCards.size();
     }
 
     /**
@@ -147,7 +196,7 @@ public class Player {
     * @return the number of development cards
     */
     public int getNumDevelopmentCards() {
-
+        return this.developmentCards.size();
     }
 
     /**
@@ -156,7 +205,7 @@ public class Player {
     * @return the color of this player
     */
     public PlayerColor getPlayerColor() {
-
+        return this.color;
     }
 
 }
