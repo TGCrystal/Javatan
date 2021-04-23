@@ -1,6 +1,6 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
-enum ResourceCardType = {BRICK, LUMBER, ORE, GRAIN, WOOL};
+enum ResourceCardType {BRICK, LUMBER, ORE, GRAIN, WOOL};
 
 /**
 * A resource card, stores which type it is using ResourceCardType

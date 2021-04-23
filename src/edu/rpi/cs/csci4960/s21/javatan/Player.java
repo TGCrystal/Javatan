@@ -36,21 +36,21 @@ public class Player {
     /**
     * Adds a given progress card to the player's hand
     *
-    * @param card the progress card to add
+    * @param cardType the type of progress card to add
     */
-    public void addResourceCard(ResourceCard card) {
+    public void addResourceCard(ResourceCardType cardType) {
         //Chuanfeng Xiong
-        this.resourceCards.add(card);
+        this.resourceCards.add(new ResourceCard(cardType));
     }
 
     /**
     * Adds a given development card to the player's hand
     *
-    * @param card the development card to add
+    * @param cardType the type of development card to add
     */
-    public void addDevelopmentCard(DevelopmentCard card) {
+    public void addDevelopmentCard(DevelopmentCardType cardType) {
         //Chuanfeng Xiong
-        this.developmentCards.add(card);
+        this.developmentCards.add(new DevelopmentCard(cardType));
     }
 
     /**
@@ -82,9 +82,10 @@ public class Player {
     * Removes a given resource card from the player's hand, returns to indicate if the removal
     * was successful
     *
+    * @param cardType the type of resource card to remove
     * @return true if the card was successfully removed, false otherwise
     */
-    public boolean removeResourceCard(ResourceCard card) {
+    public boolean removeResourceCard(ResourceCardType cardType) {
 
     }
 
@@ -92,9 +93,10 @@ public class Player {
     * Removes a given development card from the player's hand, returns to indicate if the removal
     * was successful
     *
+    * @param cardType the type of development card to remove
     * @return true if the card was successfully removed, false otherwise
     */
-    public boolean removeDevelopmentCard(DevelopmentCard card) {
+    public boolean removeDevelopmentCard(DevelopmentCardType cardType) {
 
     }
 
@@ -120,6 +122,24 @@ public class Player {
     * If the player does not have the card, then nothing happens.
     */
     public void removeLargestArmy() {
+
+    }
+
+    /**
+    * Checks if the player has the longest road card
+    *
+    * @return true if this player has the longest road card
+    */
+    public boolean hasLongestRoad() {
+
+    }
+
+    /**
+    * Checks if the player has the largest army card
+    *
+    * @return true if this player has the largest army card
+    */
+    public boolean hasLargestArmy() {
 
     }
 
