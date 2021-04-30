@@ -36,12 +36,11 @@ public class Board {
         roads = new Road[numRows*2+2][numCols*2+2];
         buildings = new Building[numRows*2+2][numCols*2+2];
 
-        // TODO: STILL NEED TO SET RESOURCE TYPES AND NUMBERS OF TILES FOR DEFAULT BOARD
+        setupDefaultBoardConfiguration();
 
         robberRow = -1;
         robberColumn = -1;
     }
-
 
     /**
     * Adds a road for the player to the given index. The indices works such that the progression
@@ -273,12 +272,14 @@ public class Board {
      * @return True if this placement is valid, false otherwise
      */
     private boolean checkValidBuildingPlacement(int buildingRow, int buildingCol, PlayerColor color) {
+        // Check to see if we're adjacent to a road of this type
         Road[] adjRoads = getRoadsAdjacentToBuilding(buildingRow, buildingCol);
 
         for (Road road : adjRoads) {
             if (road.getOwner().equals(color))
                 return true;
         }
+
         return false;
     }
 
@@ -296,6 +297,61 @@ public class Board {
                 return new ResourceCard(ResourceCardType.WOOL);
             default:
                 throw new IllegalArgumentException("Can't build a resource card for a default tile");
+        }
+    }
+
+    /**
+     * This sets up the default board configuration
+     */
+    private void setupDefaultBoardConfiguration() {
+
+        // -------------------Setup Tiles-------------------
+        // Row 0
+        tiles[0][1] = new Tile(TileType.MOUNTAINS, 10);
+        tiles[0][2] = new Tile(TileType.PASTURE, 2);
+        tiles[0][3] = new Tile(TileType.FOREST, 9);
+        // Row 1
+        tiles[1][1] = new Tile(TileType.FIELDS, 12);
+        tiles[1][2] = new Tile(TileType.HILLS, 6);
+        tiles[1][3] = new Tile(TileType.PASTURE, 4);
+        tiles[1][4] = new Tile(TileType.HILLS, 10);
+        // Row 2
+        tiles[2][0] = new Tile(TileType.FIELDS, 9);
+        tiles[2][1] = new Tile(TileType.FOREST, 11);
+        tiles[2][2] = new Tile(TileType.DESERT, -1);
+        tiles[2][3] = new Tile(TileType.FOREST, 3);
+        tiles[2][4] = new Tile(TileType.MOUNTAINS, 8);
+        // Row 3
+        tiles[3][1] = new Tile(TileType.FOREST, 8);
+        tiles[3][2] = new Tile(TileType.MOUNTAINS, 3);
+        tiles[3][3] = new Tile(TileType.FIELDS, 4);
+        tiles[3][4] = new Tile(TileType.PASTURE, 5);
+        // Row 4
+        tiles[4][1] = new Tile(TileType.HILLS, 5);
+        tiles[4][2] = new Tile(TileType.FIELDS, 6);
+        tiles[4][3] = new Tile(TileType.PASTURE, 11);
+
+        // Setup roads. Make blank roads everywhere, then set ports manually
+        for (int i = 0; i < roads.length; i++) {
+            for (int j = 0; j < roads[i].length; j++) {
+                roads[i][j] = new Road();
+            }
+        }
+        roads[0][2] = new Road(PortType.THREE);
+        roads[0][5] = new Road(PortType.GRAIN);
+        roads[2][8] = new Road(PortType.ORE);
+        roads[5][10] = new Road(PortType.THREE);
+        roads[8][8] = new Road(PortType.WOOL);
+        roads[10][5] = new Road(PortType.THREE);
+        roads[10][2] = new Road(PortType.THREE);
+        roads[7][1] = new Road(PortType.BRICK);
+        roads[3][1] = new Road(PortType.LUMBER);
+        
+        // All buildings are blank
+        for (int i = 0; i < buildings.length; i++) {
+            for (int j = 0; j < buildings[i].length; j++) {
+                buildings[i][j] = new Building();
+            }
         }
     }
 }
