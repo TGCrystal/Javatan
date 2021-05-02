@@ -11,27 +11,36 @@ import java.util.ArrayList;
 * @author Trevor Crystal
 */
 public class Game {
-    // private final Board board;
+    private final Board board;
     private PlayerColor longestRoad;
     private PlayerColor largestArmy;
-    // private final ArrayList<PlayerColor> players;
+    private final ArrayList<PlayerColor> players;
     private int currentPlayerIndex;
 
     /**
     * Constructor for the game, initializes the board, does not add any players
     */
     public Game() {
-
+        board = new Board();
+        players = new ArrayList<PlayerColor>();
+        currentPlayerIndex = 0;
     }
 
     /**
-    * Adds a new player to the game, assigning them a color
+    * Adds a new player to the game, assigning them a color. 
+    * Returns null if there are no more colors to assign
     *
     * @return the color of the newly added player
     */
-    // public PlayerColor addPlayer() {
-
-    // }
+    public PlayerColor addPlayer() {
+        for (PlayerColor color : PlayerColor.values()) {
+            if (!players.contains(color) && color != PlayerColor.NONE) {
+                players.add(color);
+                return color;
+            }
+        }
+        return null;
+    }
 
     /**
     * Gives the longest road card to the given player
@@ -40,7 +49,8 @@ public class Game {
     * @throws IllegalArgumentException if the game does not have the given player registered
     */
     public void giveLongestRoad(PlayerColor player) throws IllegalArgumentException {
-
+        verifyPlayerExists(player);
+        this.longestRoad = player;
     }
 
     /**
@@ -50,7 +60,8 @@ public class Game {
     * @throws IllegalArgumentException if the game does not have the given player registered
     */
     public void giveLargestArmy(PlayerColor player) throws IllegalArgumentException {
-
+        verifyPlayerExists(player);
+        this.largestArmy = player;
     }
 
     /**
@@ -58,14 +69,21 @@ public class Game {
     *
     * @return the color indicating the player whose turn it currently is
     */
-    // public PlayerColor getCurrentPlayer() {
-
-    // }
+    public PlayerColor getCurrentPlayer() {
+        return players.get(currentPlayerIndex);
+    }
 
     /**
     * Advances to the next players turn
     */
     public void nextTurn() {
+        currentPlayerIndex++;
+        if (currentPlayerIndex == players.size())
+            currentPlayerIndex = 0;
+    }
 
+    private void verifyPlayerExists(PlayerColor player) throws IllegalArgumentException {
+        if (!players.contains(player))
+            throw new IllegalArgumentException("There is no " + player + " registered in the game");
     }
 }
