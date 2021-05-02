@@ -26,6 +26,11 @@ public class Game {
         currentPlayerIndex = 0;
     }
 
+    public Board getBoard()
+    {
+        return this.board;
+    }
+
     /**
     * Adds a new player to the game, assigning them a color. 
     * Returns null if there are no more colors to assign
@@ -40,6 +45,18 @@ public class Game {
             }
         }
         return null;
+    }
+
+    private Boolean firstHouse = true;
+    public Boolean assignSettlement(PlayerColor color, int x, int y)
+    {
+        if (firstHouse)
+        {
+            firstHouse = false;
+            return board.addBuildingInit(x, y, color);
+        }
+        else 
+            return board.addBuilding(x, y, color);
     }
 
     /**

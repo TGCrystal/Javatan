@@ -42,6 +42,14 @@ public class Board {
         robberColumn = -1;
     }
 
+    public Road getRoad(int x, int y) {
+        return roads[x][y];
+    }
+
+    public Building getBuilding(int x, int y) {
+        return buildings[x][y];
+    }
+
     /**
     * Adds a road for the player to the given index. The indices works such that the progression
     * is left to right for columns, top to bottom for rows. Even rows indicate rows of
@@ -208,11 +216,12 @@ public class Board {
         Road[] adjacentRoads = new Road[3];
 
         adjacentRoads[0] = roads[buildingRow*2][buildingCol];
-        adjacentRoads[1] = roads[buildingRow*2][buildingCol-1];
+        if (buildingCol > 0)
+            adjacentRoads[1] = roads[buildingRow*2][buildingCol-1];
         if (buildingRow % 2 == buildingCol % 2) {
-            adjacentRoads[3] = roads[buildingRow*2+1][buildingCol];
+            adjacentRoads[2] = roads[buildingRow*2+1][buildingCol];
         } else {
-            adjacentRoads[3] = roads[buildingRow*2-1][buildingCol];
+            adjacentRoads[2] = roads[buildingRow*2-1][buildingCol];
         }
         return adjacentRoads;
     }

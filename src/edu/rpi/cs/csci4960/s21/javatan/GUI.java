@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.event.*;
 
 public class GUI extends Application { 
+	protected static Client client;
 	private static ArrayList<ArrayList<Settlement>> settlements = new ArrayList<>();
 	private static ArrayList<ArrayList<Polygon>> polygons = new ArrayList<>();
 	private static ArrayList<ArrayList<ArrayList<Double>>> tileCenters = new ArrayList<>();
@@ -19,6 +20,10 @@ public class GUI extends Application {
 	// private static void chooseFieldType() {
 	// 	String[] types = new String[] {"forest", "forest", "forest", "field", "field", "field", "pasture", "pasture", "pasture", "pasture"};
 	// }
+
+	public static void main(String args[]){ 
+		launch(args); 
+	 } 
 
 	private static ArrayList<Double> getHexTileCoords(int x, int y) {
 		if (x == 2) {
@@ -39,6 +44,19 @@ public class GUI extends Application {
 
 	public static void setColorOfRoadGUI(int x, int y, String color) {
 		getRoadGUI(x, y).makeColor(color);
+	}
+
+	// Yes this is terrible. I don't care.
+	public static void setColorOfSettlement(int x, int y, String color) {
+		for (int i = 0; i < settlements.size(); i++) {
+			ArrayList<Settlement> row = settlements.get(i);
+			for (int j = 0; j < row.size(); j++) {
+				Tuple<Integer, Integer> t = row.get(j).getRowAndCol();
+				if (t.t == x && t.k == y) {
+					row.get(j).upgradeOrAssignToPlayer(color);
+				}
+			}
+		}
 	}
 
 	private static void setColorOfHexTile(int x, int y, String color) {
@@ -227,6 +245,7 @@ public class GUI extends Application {
 	}
    @Override 
    public void start(Stage stage) {        
+	   client = new Client(this);
       
 
 	//getStylesheets().add(getClass().getResource("style.css").toExternalForm());
@@ -251,199 +270,199 @@ public class GUI extends Application {
 	  
 	  drawGrid(root, 250, 100, 80);
 
-		// ArrayList<Settlement> firstRow = new ArrayList<>();
+		ArrayList<Settlement> firstRow = new ArrayList<>();
 
-		// Settlement set1 = new Settlement(root, 165.6, 52.8);
-		// set1.placeButton();
-		// Settlement set2 = new Settlement(root, 236.8, 12.0);
-		// set2.placeButton();
-		// Settlement set3 = new Settlement(root, 309.6, 47.2);
-		// set3.placeButton();
-		// Settlement set4 = new Settlement(root, 390.4, 14.4);
-		// set4.placeButton();
-		// Settlement set5 = new Settlement(root, 469.6, 52.0);
-		// set5.placeButton();
-		// Settlement set6 = new Settlement(root, 548.0, 14.4);
-		// set6.placeButton();
-		// Settlement set7 = new Settlement(root, 619.2, 52.8);
-		// set7.placeButton();
+		Settlement set1 = new Settlement(root, 165.6, 52.8, 0, 2);
+		set1.placeButton();
+		Settlement set2 = new Settlement(root, 236.8, 12.0, 0, 3);
+		set2.placeButton();
+		Settlement set3 = new Settlement(root, 309.6, 47.2, 0, 4);
+		set3.placeButton();
+		Settlement set4 = new Settlement(root, 390.4, 14.4, 0, 5);
+		set4.placeButton();
+		Settlement set5 = new Settlement(root, 469.6, 52.0, 0, 6);
+		set5.placeButton();
+		Settlement set6 = new Settlement(root, 548.0, 14.4, 0, 7);
+		set6.placeButton();
+		Settlement set7 = new Settlement(root, 619.2, 52.8, 0, 8);
+		set7.placeButton();
 
-		// firstRow.add(set1);
-		// firstRow.add(set2);
-		// firstRow.add(set3);
-		// firstRow.add(set4);
-		// firstRow.add(set5);
-		// firstRow.add(set6);
-		// firstRow.add(set7);
+		firstRow.add(set1);
+		firstRow.add(set2);
+		firstRow.add(set3);
+		firstRow.add(set4);
+		firstRow.add(set5);
+		firstRow.add(set6);
+		firstRow.add(set7);
 
-		// ArrayList<Settlement> secondRow = new ArrayList<>();
+		ArrayList<Settlement> secondRow = new ArrayList<>();
 
-		// Settlement set8 = new Settlement(root, 94.4, 187.2);
-		// set8.placeButton();
-		// Settlement set9 = new Settlement(root, 163.2, 143.2);
-		// set9.placeButton();
-		// Settlement set10 = new Settlement(root, 235.2, 176.8);
-		// set10.placeButton();
-		// Settlement set11 = new Settlement(root, 316.0, 135.2);
-		// set11.placeButton();
-		// Settlement set12 = new Settlement(root, 390.4, 176.0);
-		// set12.placeButton();
-		// Settlement set13 = new Settlement(root, 471.2, 137.6);
-		// set13.placeButton();
-		// Settlement set14 = new Settlement(root, 545.6, 178.4);
-		// set14.placeButton();
-		// Settlement set15 = new Settlement(root, 620.0, 138.4);
-		// set15.placeButton();
-		// Settlement set16 = new Settlement(root, 694.4, 188.8);
-		// set16.placeButton();
+		Settlement set8 = new Settlement(root, 94.4, 187.2, 1, 1);
+		set8.placeButton();
+		Settlement set9 = new Settlement(root, 163.2, 143.2, 1, 2);
+		set9.placeButton();
+		Settlement set10 = new Settlement(root, 235.2, 176.8, 1, 3);
+		set10.placeButton();
+		Settlement set11 = new Settlement(root, 316.0, 135.2, 1, 4);
+		set11.placeButton();
+		Settlement set12 = new Settlement(root, 390.4, 176.0, 1, 5);
+		set12.placeButton();
+		Settlement set13 = new Settlement(root, 471.2, 137.6, 1, 6);
+		set13.placeButton();
+		Settlement set14 = new Settlement(root, 545.6, 178.4, 1, 7);
+		set14.placeButton();
+		Settlement set15 = new Settlement(root, 620.0, 138.4, 1, 8);
+		set15.placeButton();
+		Settlement set16 = new Settlement(root, 694.4, 188.8, 1, 9);
+		set16.placeButton();
 
-		// secondRow.add(set8);
-		// secondRow.add(set9);
-		// secondRow.add(set10);
-		// secondRow.add(set11);
-		// secondRow.add(set12);
-		// secondRow.add(set13);
-		// secondRow.add(set14);
-		// secondRow.add(set15);
-		// secondRow.add(set16);
+		secondRow.add(set8);
+		secondRow.add(set9);
+		secondRow.add(set10);
+		secondRow.add(set11);
+		secondRow.add(set12);
+		secondRow.add(set13);
+		secondRow.add(set14);
+		secondRow.add(set15);
+		secondRow.add(set16);
 
-		// ArrayList<Settlement> thirdRow = new ArrayList<>();
+		ArrayList<Settlement> thirdRow = new ArrayList<>();
 
-		// Settlement set17 = new Settlement(root, 14.4, 320.0);
-		// set17.placeButton();
-		// Settlement set18 = new Settlement(root, 85.6, 273.6);
-		// set18.placeButton();
-		// Settlement set19 = new Settlement(root, 154.4, 310.4);
-		// set19.placeButton();
-		// Settlement set20 = new Settlement(root, 233.6, 270.4);
-		// set20.placeButton();
-		// Settlement set21 = new Settlement(root, 311.2, 309.6);
-		// set21.placeButton();
-		// Settlement set22 = new Settlement(root, 389.6, 270.4);
-		// set22.placeButton();
-		// Settlement set23 = new Settlement(root, 468.8, 312.8);
-		// set23.placeButton();
-		// Settlement set24 = new Settlement(root, 544.8, 270.4);
-		// set24.placeButton();
-		// Settlement set25 = new Settlement(root, 624.0, 311.2);
-		// set25.placeButton();
-		// Settlement set26 = new Settlement(root, 696.0, 271.2);
-		// set26.placeButton();
-		// Settlement set27 = new Settlement(root, 773.6, 318.4);
-		// set27.placeButton();
+		Settlement set17 = new Settlement(root, 14.4, 320.0, 2, 0);
+		set17.placeButton();
+		Settlement set18 = new Settlement(root, 85.6, 273.6, 2, 1);
+		set18.placeButton();
+		Settlement set19 = new Settlement(root, 154.4, 310.4, 2, 2);
+		set19.placeButton();
+		Settlement set20 = new Settlement(root, 233.6, 270.4, 2, 3);
+		set20.placeButton();
+		Settlement set21 = new Settlement(root, 311.2, 309.6, 2, 4);
+		set21.placeButton();
+		Settlement set22 = new Settlement(root, 389.6, 270.4, 2, 5);
+		set22.placeButton();
+		Settlement set23 = new Settlement(root, 468.8, 312.8, 2, 6);
+		set23.placeButton();
+		Settlement set24 = new Settlement(root, 544.8, 270.4, 2, 7);
+		set24.placeButton();
+		Settlement set25 = new Settlement(root, 624.0, 311.2, 2, 8);
+		set25.placeButton();
+		Settlement set26 = new Settlement(root, 696.0, 271.2, 2, 9);
+		set26.placeButton();
+		Settlement set27 = new Settlement(root, 773.6, 318.4, 2, 10);
+		set27.placeButton();
 
-		// thirdRow.add(set17);
-		// thirdRow.add(set18);
-		// thirdRow.add(set19);
-		// thirdRow.add(set20);
-		// thirdRow.add(set21);
-		// thirdRow.add(set22);
-		// thirdRow.add(set23);
-		// thirdRow.add(set24);
-		// thirdRow.add(set25);
-		// thirdRow.add(set26);
-		// thirdRow.add(set27);
+		thirdRow.add(set17);
+		thirdRow.add(set18);
+		thirdRow.add(set19);
+		thirdRow.add(set20);
+		thirdRow.add(set21);
+		thirdRow.add(set22);
+		thirdRow.add(set23);
+		thirdRow.add(set24);
+		thirdRow.add(set25);
+		thirdRow.add(set26);
+		thirdRow.add(set27);
 
-		// ArrayList<Settlement> fourthRow = new ArrayList<>();
+		ArrayList<Settlement> fourthRow = new ArrayList<>();
 
 
-		// Settlement set28 = new Settlement(root, 16.0, 400.8);
-		// set28.placeButton();
-		// Settlement set29 = new Settlement(root, 84.8, 440.0);
-		// set29.placeButton();
-		// Settlement set30 = new Settlement(root, 156.0, 404.8);
-		// set30.placeButton();
-		// Settlement set31 = new Settlement(root, 236.0, 444.8);
-		// set31.placeButton();
-		// Settlement set32 = new Settlement(root, 314.4, 405.6);
-		// set32.placeButton();
-		// Settlement set33 = new Settlement(root, 390.4, 446.4);
-		// set33.placeButton();
-		// Settlement set34 = new Settlement(root, 468.0, 404.8);
-		// set34.placeButton();
-		// Settlement set35 = new Settlement(root, 544.8, 444.8);
-		// set35.placeButton();
-		// Settlement set36 = new Settlement(root, 623.2, 404.0);
-		// set36.placeButton();
-		// Settlement set37 = new Settlement(root, 700.0, 444.8);
-		// set37.placeButton();
-		// Settlement set38 = new Settlement(root, 769.6, 397.6);
-		// set38.placeButton();
+		Settlement set28 = new Settlement(root, 16.0, 400.8, 3, 0);
+		set28.placeButton();
+		Settlement set29 = new Settlement(root, 84.8, 440.0, 3, 1);
+		set29.placeButton();
+		Settlement set30 = new Settlement(root, 156.0, 404.8, 3, 2);
+		set30.placeButton();
+		Settlement set31 = new Settlement(root, 236.0, 444.8, 3, 3);
+		set31.placeButton();
+		Settlement set32 = new Settlement(root, 314.4, 405.6, 3, 4);
+		set32.placeButton();
+		Settlement set33 = new Settlement(root, 390.4, 446.4, 3, 5);
+		set33.placeButton();
+		Settlement set34 = new Settlement(root, 468.0, 404.8, 3, 6);
+		set34.placeButton();
+		Settlement set35 = new Settlement(root, 544.8, 444.8, 3, 7);
+		set35.placeButton();
+		Settlement set36 = new Settlement(root, 623.2, 404.0, 3, 8);
+		set36.placeButton();
+		Settlement set37 = new Settlement(root, 700.0, 444.8, 3, 9);
+		set37.placeButton();
+		Settlement set38 = new Settlement(root, 769.6, 397.6, 3, 10);
+		set38.placeButton();
 
-		// fourthRow.add(28);
-		// fourthRow.add(29);
-		// fourthRow.add(30);
-		// fourthRow.add(31);
-		// fourthRow.add(32);
-		// fourthRow.add(33);
-		// fourthRow.add(34);
-		// fourthRow.add(35);
-		// fourthRow.add(36);
-		// fourthRow.add(37);
-		// fourthRow.add(38);
+		fourthRow.add(set28);
+		fourthRow.add(set29);
+		fourthRow.add(set30);
+		fourthRow.add(set31);
+		fourthRow.add(set32);
+		fourthRow.add(set33);
+		fourthRow.add(set34);
+		fourthRow.add(set35);
+		fourthRow.add(set36);
+		fourthRow.add(set37);
+		fourthRow.add(set38);
 
-		// ArrayList<Settlement> fifthRow = new ArrayList<>();
+		ArrayList<Settlement> fifthRow = new ArrayList<>();
 
-		// Settlement set39 = new Settlement(root, 91.2, 535.2);
-		// set39.placeButton();
-		// Settlement set40 = new Settlement(root, 158.4, 574.4);
-		// set40.placeButton();
-		// Settlement set41 = new Settlement(root, 236.0, 536.0);
-		// set41.placeButton();
-		// Settlement set42 = new Settlement(root, 310.4, 578.4);
-		// set42.placeButton();
-		// Settlement set43 = new Settlement(root, 389.6, 536.8);
-		// set43.placeButton();
-		// Settlement set44 = new Settlement(root, 468.8, 578.4);
-		// set44.placeButton();
-		// Settlement set45 = new Settlement(root, 547.2, 538.4);
-		// set45.placeButton();
-		// Settlement set46 = new Settlement(root, 619.2, 577.6);
-		// set46.placeButton();
-		// Settlement set47 = new Settlement(root, 694.4, 534.4);
-		// set47.placeButton();
+		Settlement set39 = new Settlement(root, 91.2, 535.2, 4, 1);
+		set39.placeButton();
+		Settlement set40 = new Settlement(root, 158.4, 574.4, 4, 2);
+		set40.placeButton();
+		Settlement set41 = new Settlement(root, 236.0, 536.0, 4, 3);
+		set41.placeButton();
+		Settlement set42 = new Settlement(root, 310.4, 578.4, 4, 4);
+		set42.placeButton();
+		Settlement set43 = new Settlement(root, 389.6, 536.8, 4, 5);
+		set43.placeButton();
+		Settlement set44 = new Settlement(root, 468.8, 578.4, 4, 6);
+		set44.placeButton();
+		Settlement set45 = new Settlement(root, 547.2, 538.4, 4, 7);
+		set45.placeButton();
+		Settlement set46 = new Settlement(root, 619.2, 577.6, 4, 8);
+		set46.placeButton();
+		Settlement set47 = new Settlement(root, 694.4, 534.4, 4, 9);
+		set47.placeButton();
 
-		// fifthRow.add(set39);
-		// fifthRow.add(set40);
-		// fifthRow.add(set41);
-		// fifthRow.add(set42);
-		// fifthRow.add(set43);
-		// fifthRow.add(set44);
-		// fifthRow.add(set45);
-		// fifthRow.add(set46);
-		// fifthRow.add(set47);
+		fifthRow.add(set39);
+		fifthRow.add(set40);
+		fifthRow.add(set41);
+		fifthRow.add(set42);
+		fifthRow.add(set43);
+		fifthRow.add(set44);
+		fifthRow.add(set45);
+		fifthRow.add(set46);
+		fifthRow.add(set47);
 
-		// ArrayList<Settlement> sixthRow = new ArrayList<>();
+		ArrayList<Settlement> sixthRow = new ArrayList<>();
 
-		// Settlement set48 = new Settlement(root, 168.0, 667.2);
-		// set48.placeButton();
-		// Settlement set49 = new Settlement(root, 240.0, 706.4);
-		// set49.placeButton();
-		// Settlement set50 = new Settlement(root, 313.6, 667.2);
-		// set50.placeButton();
-		// Settlement set51 = new Settlement(root, 394.4, 708.0);
-		// set51.placeButton();
-		// Settlement set52 = new Settlement(root, 467.2, 666.4);
-		// set52.placeButton();
-		// Settlement set53 = new Settlement(root, 548.0, 705.6);
-		// set53.placeButton();
-		// Settlement set54 = new Settlement(root, 618.4, 668.0);
-		// set54.placeButton();
+		Settlement set48 = new Settlement(root, 168.0, 667.2, 4, 2);
+		set48.placeButton();
+		Settlement set49 = new Settlement(root, 240.0, 706.4, 4, 3);
+		set49.placeButton();
+		Settlement set50 = new Settlement(root, 313.6, 667.2, 4, 4);
+		set50.placeButton();
+		Settlement set51 = new Settlement(root, 394.4, 708.0, 4, 5);
+		set51.placeButton();
+		Settlement set52 = new Settlement(root, 467.2, 666.4, 4, 6);
+		set52.placeButton();
+		Settlement set53 = new Settlement(root, 548.0, 705.6, 4, 7);
+		set53.placeButton();
+		Settlement set54 = new Settlement(root, 618.4, 668.0, 4, 8);
+		set54.placeButton();
 		
-		// sixthRow.add(set48);
-		// sixthRow.add(set49);
-		// sixthRow.add(set50);
-		// sixthRow.add(set51);
-		// sixthRow.add(set52);
-		// sixthRow.add(set53);
-		// sixthRow.add(set54);
+		sixthRow.add(set48);
+		sixthRow.add(set49);
+		sixthRow.add(set50);
+		sixthRow.add(set51);
+		sixthRow.add(set52);
+		sixthRow.add(set53);
+		sixthRow.add(set54);
 
-		// settlements.add(firstRow);
-		// settlements.add(secondRow);
-		// settlements.add(thirdRow);
-		// settlements.add(fourthRow);
-		// settlements.add(fifthRow);
-		// settlements.add(sixthRow);
+		settlements.add(firstRow);
+		settlements.add(secondRow);
+		settlements.add(thirdRow);
+		settlements.add(fourthRow);
+		settlements.add(fifthRow);
+		settlements.add(sixthRow);
 
 
 
@@ -1429,7 +1448,5 @@ public class GUI extends Application {
       //Displaying the contents of the stage 
       stage.show(); 
    } 
-   public static void main(String args[]){ 
-      launch(args); 
-   } 
+   
 }
