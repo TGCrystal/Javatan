@@ -1,39 +1,53 @@
-package app;
+package edu.rpi.cs.csci4960.s21.javatan;
 
-import javafx.application.Application; 
-import javafx.scene.Group; 
-import javafx.scene.Scene; 
-import javafx.scene.shape.Polygon; 
-import javafx.stage.Stage;
-import java.util.ArrayList;
-import javafx.scene.control.Button;
-import javafx.event.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+enum PortType {NONE, BRICK, LUMBER, ORE, GRAIN, WOOL, THREE};
 
+public class Road {
+    private PlayerColor ownership;
+    private final PortType port;
 
-public class Road { 
+    /**
+    * Creates a new road with no owner and no port
+    */
+    public Road() {
+        ownership = PlayerColor.NONE;
+        port = PortType.NONE;
+    }
 
-	private Polygon thePolygon;
-	private Group theRoot;
+    /**
+    * Creates a new road with no owner and the given port type
+    *
+    * @param port the type of port to associate with this road
+    */
+    public Road(PortType port) {
+        ownership = PlayerColor.NONE;
+        this.port = port;
+    }
 
-	public Road(Group root, Polygon polygon) {
-		theRoot = root;
-		thePolygon = polygon;
-		theRoot.getChildren().add(polygon);
-	}
+    /**
+    * Sets the owner of this road
+    *
+    * @param newOwner the new owner of this road
+    */
+    public void setOwner(PlayerColor newOwner) {
+        ownership = newOwner;
+    }
 
-	public void makeColor(String color) {
-		if (color.equals("red")) {
-			thePolygon.setFill(javafx.scene.paint.Color.RED);
-		} else if (color.equals("orange")) {
-			thePolygon.setFill(javafx.scene.paint.Color.ORANGE);
-		} else if (color.equals("white")) {
-			thePolygon.setFill(javafx.scene.paint.Color.WHITE);
-		} else if (color.equals("blue")) {
-			thePolygon.setFill(javafx.scene.paint.Color.BLUE);
-		}
-	}
+    /**
+    * Gets the color of the owner of this road
+    *
+    * @return the color of the owner of this road
+    */
+    public PlayerColor getOwner() {
+        return ownership;
+    }
 
-	
+    /**
+    * Gets the type of this port
+    *
+    * @return the type of this port
+    */
+    public PortType getPort() {
+        return port;
+    }
 }
