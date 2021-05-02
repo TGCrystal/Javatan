@@ -1,6 +1,7 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
 import java.lang.IllegalArgumentException;
+import java.util.ArrayList;
 
 /**
 * Used to keep track of and manage the current game
@@ -20,16 +21,25 @@ public class Game {
     * Constructor for the game, initializes the board, does not add any players
     */
     public Game() {
-
+        board = new Board();
+        players = new ArrayList<PlayerColor>();
+        currentPlayerIndex = 0;
     }
 
     /**
-    * Adds a new player to the game, assigning them a color
+    * Adds a new player to the game, assigning them a color. 
+    * Returns null if there are no more colors to assign
     *
     * @return the color of the newly added player
     */
     public PlayerColor addPlayer() {
-
+        for (PlayerColor color : PlayerColor.values()) {
+            if (!players.contains(color) && color != PlayerColor.NONE) {
+                players.add(color);
+                return color;
+            }
+        }
+        return null;
     }
 
     /**
@@ -39,7 +49,8 @@ public class Game {
     * @throws IllegalArgumentException if the game does not have the given player registered
     */
     public void giveLongestRoad(PlayerColor player) throws IllegalArgumentException {
-
+        verifyPlayerExists(player);
+        this.longestRoad = player;
     }
 
     /**
@@ -49,7 +60,8 @@ public class Game {
     * @throws IllegalArgumentException if the game does not have the given player registered
     */
     public void giveLargestArmy(PlayerColor player) throws IllegalArgumentException {
-
+        verifyPlayerExists(player);
+        this.largestArmy = player;
     }
 
     /**
@@ -58,13 +70,20 @@ public class Game {
     * @return the color indicating the player whose turn it currently is
     */
     public PlayerColor getCurrentPlayer() {
-
+        return players.get(currentPlayerIndex);
     }
 
     /**
     * Advances to the next players turn
     */
     public void nextTurn() {
+        currentPlayerIndex++;
+        if (currentPlayerIndex == players.size())
+            currentPlayerIndex = 0;
+    }
 
+    private void verifyPlayerExists(PlayerColor player) throws IllegalArgumentException {
+        if (!players.contains(player))
+            throw new IllegalArgumentException("There is no " + player + " registered in the game");
     }
 }
