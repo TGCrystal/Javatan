@@ -32,7 +32,6 @@ public class Client {
 
                     break;
                 }
-                //阻塞等待接收服务端的消息
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block
