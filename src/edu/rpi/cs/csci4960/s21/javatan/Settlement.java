@@ -1,4 +1,4 @@
-package app;
+package edu.rpi.cs.csci4960.s21.javatan;
 
 import javafx.application.Application; 
 import javafx.scene.Group; 

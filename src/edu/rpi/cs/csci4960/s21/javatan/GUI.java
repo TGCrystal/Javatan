@@ -1,4 +1,4 @@
-package app;
+package edu.rpi.cs.csci4960.s21.javatan;
 
 import javafx.application.Application; 
 import javafx.scene.Group; 
@@ -13,7 +13,7 @@ public class GUI extends Application {
 	private static ArrayList<ArrayList<Settlement>> settlements = new ArrayList<>();
 	private static ArrayList<ArrayList<Polygon>> polygons = new ArrayList<>();
 	private static ArrayList<ArrayList<ArrayList<Double>>> tileCenters = new ArrayList<>();
-	private static ArrayList<ArrayList<Road>> roads = new ArrayList<>();
+	private static ArrayList<ArrayList<RoadGUI>> roads = new ArrayList<>();
 
 
 	// private static void chooseFieldType() {
@@ -37,8 +37,8 @@ public class GUI extends Application {
 		
 	}
 
-	public static void setColorOfRoad(int x, int y, String color) {
-		getRoad(x, y).makeColor(color);
+	public static void setColorOfRoadGUI(int x, int y, String color) {
+		getRoadGUI(x, y).makeColor(color);
 	}
 
 	private static void setColorOfHexTile(int x, int y, String color) {
@@ -165,7 +165,7 @@ public class GUI extends Application {
 	// }
 
 
-	public static Road getRoad(int x, int y) {
+	public static RoadGUI getRoadGUI(int x, int y) {
 		if (x == 0 || x == 10) {
 			return roads.get(x).get(y-2);
 		} else if (x == 1 || x == 9) {
@@ -458,7 +458,7 @@ public class GUI extends Application {
 		248.8, 18.4
 		});
 
-		Road road1 = new Road(root, roadPoly1);
+		RoadGUI road1 = new RoadGUI(root, roadPoly1);
 
 		Polygon roadPoly2 = new Polygon();
 
@@ -469,7 +469,7 @@ public class GUI extends Application {
 		316.8, 59.2
 		});
 
-		Road road2 = new Road(root, roadPoly2);
+		RoadGUI road2 = new RoadGUI(root, roadPoly2);
 
 		Polygon roadPoly3 = new Polygon();
 
@@ -480,7 +480,7 @@ public class GUI extends Application {
 		403.2, 19.2
 		});
 
-		Road road3 = new Road(root, roadPoly3);
+		RoadGUI road3 = new RoadGUI(root, roadPoly3);
 
 		Polygon roadPoly4 = new Polygon();
 
@@ -491,7 +491,7 @@ public class GUI extends Application {
 		483.2, 42.4
 		});
 
-		Road road4 = new Road(root, roadPoly4);
+		RoadGUI road4 = new RoadGUI(root, roadPoly4);
 
 		Polygon roadPoly5 = new Polygon();
 
@@ -502,7 +502,7 @@ public class GUI extends Application {
 		484.8, 42.4
 		});
 
-		Road road5 = new Road(root, roadPoly5);
+		RoadGUI road5 = new RoadGUI(root, roadPoly5);
 
 		Polygon roadPoly6 = new Polygon();
 
@@ -513,7 +513,7 @@ public class GUI extends Application {
 		640.0, 43.2
 		});
 
-		Road road6 = new Road(root, roadPoly6);
+		RoadGUI road6 = new RoadGUI(root, roadPoly6);
 
 		Polygon roadPoly7 = new Polygon();
 
@@ -524,7 +524,7 @@ public class GUI extends Application {
 		160.0, 60.0
 		});
 
-		Road road7 = new Road(root, roadPoly7);
+		RoadGUI road7 = new RoadGUI(root, roadPoly7);
 
 		Polygon roadPoly8 = new Polygon();
 
@@ -535,7 +535,7 @@ public class GUI extends Application {
 		319.2, 137.6
 		});
 
-		Road road8 = new Road(root, roadPoly8);
+		RoadGUI road8 = new RoadGUI(root, roadPoly8);
 
 		Polygon roadPoly9 = new Polygon();
 
@@ -546,7 +546,7 @@ public class GUI extends Application {
 		474.4, 140.8
 		});
 
-		Road road9 = new Road(root, roadPoly9);
+		RoadGUI road9 = new RoadGUI(root, roadPoly9);
 
 		Polygon roadPoly10 = new Polygon();
 
@@ -557,7 +557,7 @@ public class GUI extends Application {
 		629.6, 137.6
 		});
 
-		Road road10 = new Road(root, roadPoly10);
+		RoadGUI road10 = new RoadGUI(root, roadPoly10);
 
 		
 		Polygon roadPoly11 = new Polygon();
@@ -569,7 +569,7 @@ public class GUI extends Application {
 		95.2, 180.0
 		});
 
-		Road road11 = new Road(root, roadPoly11);
+		RoadGUI road11 = new RoadGUI(root, roadPoly11);
 
 		Polygon roadPoly12 = new Polygon();
 
@@ -580,7 +580,7 @@ public class GUI extends Application {
 		247.2, 179.2
 		});
 
-		Road road12 = new Road(root, roadPoly12);
+		RoadGUI road12 = new RoadGUI(root, roadPoly12);
 
 
 		Polygon roadPoly13 = new Polygon();
@@ -592,7 +592,7 @@ public class GUI extends Application {
 		318.4, 140.0
 		});
 
-		Road road13 = new Road(root, roadPoly13);
+		RoadGUI road13 = new RoadGUI(root, roadPoly13);
 
 
 		Polygon roadPoly14 = new Polygon();
@@ -604,7 +604,7 @@ public class GUI extends Application {
 		400.8, 178.4
 		});
 
-		Road road14 = new Road(root, roadPoly14);
+		RoadGUI road14 = new RoadGUI(root, roadPoly14);
 
 
 		Polygon roadPoly15 = new Polygon();
@@ -616,7 +616,7 @@ public class GUI extends Application {
 		472.0, 140.0
 		});
 
-		Road road15 = new Road(root, roadPoly15);
+		RoadGUI road15 = new RoadGUI(root, roadPoly15);
 
 
 		Polygon roadPoly16 = new Polygon();
@@ -628,7 +628,7 @@ public class GUI extends Application {
 		559.2, 180.8
 		});
 
-		Road road16 = new Road(root, roadPoly16);
+		RoadGUI road16 = new RoadGUI(root, roadPoly16);
 
 
 		Polygon roadPoly17 = new Polygon();
@@ -640,7 +640,7 @@ public class GUI extends Application {
 		628.0, 140.0
 		});
 
-		Road road17 = new Road(root, roadPoly17);
+		RoadGUI road17 = new RoadGUI(root, roadPoly17);
 
 
 		Polygon roadPoly18 = new Polygon();
@@ -652,7 +652,7 @@ public class GUI extends Application {
 		713.6, 176.8
 		});
 
-		Road road18 = new Road(root, roadPoly18);
+		RoadGUI road18 = new RoadGUI(root, roadPoly18);
 
 
 		Polygon roadPoly19 = new Polygon();
@@ -664,7 +664,7 @@ public class GUI extends Application {
 		87.2, 272.8
 		});
 
-		Road road19 = new Road(root, roadPoly19);
+		RoadGUI road19 = new RoadGUI(root, roadPoly19);
 
 
 		Polygon roadPoly20 = new Polygon();
@@ -676,7 +676,7 @@ public class GUI extends Application {
 		242.4, 272.0
 		});
 
-		Road road20 = new Road(root, roadPoly20);
+		RoadGUI road20 = new RoadGUI(root, roadPoly20);
 
 
 		Polygon roadPoly21 = new Polygon();
@@ -688,7 +688,7 @@ public class GUI extends Application {
 		396.0, 274.4
 		});
 
-		Road road21 = new Road(root, roadPoly21);
+		RoadGUI road21 = new RoadGUI(root, roadPoly21);
 
 		
 		Polygon roadPoly22 = new Polygon();
@@ -700,7 +700,7 @@ public class GUI extends Application {
 		552.0, 272.8
 		});
 
-		Road road22 = new Road(root, roadPoly22);
+		RoadGUI road22 = new RoadGUI(root, roadPoly22);
 
 
 		Polygon roadPoly23 = new Polygon();
@@ -712,7 +712,7 @@ public class GUI extends Application {
 		706.4, 272.8
 		});
 
-		Road road23 = new Road(root, roadPoly23);
+		RoadGUI road23 = new RoadGUI(root, roadPoly23);
 
 
 		Polygon roadPoly24 = new Polygon();
@@ -724,7 +724,7 @@ public class GUI extends Application {
 		24.8, 328.0
 		});
 
-		Road road24 = new Road(root, roadPoly24);
+		RoadGUI road24 = new RoadGUI(root, roadPoly24);
 
 
 		Polygon roadPoly25 = new Polygon();
@@ -736,7 +736,7 @@ public class GUI extends Application {
 		172.0, 315.2
 		});
 
-		Road road25 = new Road(root, roadPoly25);
+		RoadGUI road25 = new RoadGUI(root, roadPoly25);
 
 
 		Polygon roadPoly26 = new Polygon();
@@ -748,7 +748,7 @@ public class GUI extends Application {
 		240.0, 275.2
 		});
 
-		Road road26 = new Road(root, roadPoly26);
+		RoadGUI road26 = new RoadGUI(root, roadPoly26);
 
 
 		Polygon roadPoly27 = new Polygon();
@@ -760,7 +760,7 @@ public class GUI extends Application {
 		327.2, 312.8
 		});
 
-		Road road27 = new Road(root, roadPoly27);
+		RoadGUI road27 = new RoadGUI(root, roadPoly27);
 
 
 		Polygon roadPoly28 = new Polygon();
@@ -772,7 +772,7 @@ public class GUI extends Application {
 		406.4, 289.6
 		});
 
-		Road road28 = new Road(root, roadPoly28);
+		RoadGUI road28 = new RoadGUI(root, roadPoly28);
 
 
 		Polygon roadPoly29 = new Polygon();
@@ -784,7 +784,7 @@ public class GUI extends Application {
 		484.0, 312.0
 		});
 
-		Road road29 = new Road(root, roadPoly29);
+		RoadGUI road29 = new RoadGUI(root, roadPoly29);
 
 
 		Polygon roadPoly30 = new Polygon();
@@ -796,7 +796,7 @@ public class GUI extends Application {
 		548.0, 273.6
 		});
 
-		Road road30 = new Road(root, roadPoly30);
+		RoadGUI road30 = new RoadGUI(root, roadPoly30);
 
 
 		Polygon roadPoly31 = new Polygon();
@@ -808,7 +808,7 @@ public class GUI extends Application {
 		636.8, 311.2
 		});
 
-		Road road31 = new Road(root, roadPoly31);
+		RoadGUI road31 = new RoadGUI(root, roadPoly31);
 
 
 		Polygon roadPoly32 = new Polygon();
@@ -820,7 +820,7 @@ public class GUI extends Application {
 		704.8, 273.6
 		});
 
-		Road road32 = new Road(root, roadPoly32);
+		RoadGUI road32 = new RoadGUI(root, roadPoly32);
 
 
 		Polygon roadPoly33 = new Polygon();
@@ -832,7 +832,7 @@ public class GUI extends Application {
 		791.2, 311.2
 		});
 
-		Road road33 = new Road(root, roadPoly33);
+		RoadGUI road33 = new RoadGUI(root, roadPoly33);
 
 
 		Polygon roadPoly34 = new Polygon();
@@ -844,7 +844,7 @@ public class GUI extends Application {
 		24.8, 407.2
 		});
 
-		Road road34 = new Road(root, roadPoly34);
+		RoadGUI road34 = new RoadGUI(root, roadPoly34);
 
 
 		Polygon roadPoly35 = new Polygon();
@@ -856,7 +856,7 @@ public class GUI extends Application {
 		164.0, 408.8
 		});
 
-		Road road35 = new Road(root, roadPoly35);
+		RoadGUI road35 = new RoadGUI(root, roadPoly35);
 
 
 		Polygon roadPoly36 = new Polygon();
@@ -868,7 +868,7 @@ public class GUI extends Application {
 		315.2, 408.8
 		});
 
-		Road road36 = new Road(root, roadPoly36);
+		RoadGUI road36 = new RoadGUI(root, roadPoly36);
 
 
 		Polygon roadPoly37 = new Polygon();
@@ -880,7 +880,7 @@ public class GUI extends Application {
 		472.8, 404.8
 		});
 
-		Road road37 = new Road(root, roadPoly37);
+		RoadGUI road37 = new RoadGUI(root, roadPoly37);
 
 
 		Polygon roadPoly38 = new Polygon();
@@ -892,7 +892,7 @@ public class GUI extends Application {
 		626.4, 409.6
 		});
 
-		Road road38 = new Road(root, roadPoly38);
+		RoadGUI road38 = new RoadGUI(root, roadPoly38);
 
 
 		Polygon roadPoly39 = new Polygon();
@@ -904,7 +904,7 @@ public class GUI extends Application {
 		784.8, 404.8
 		});
 
-		Road road39 = new Road(root, roadPoly39);
+		RoadGUI road39 = new RoadGUI(root, roadPoly39);
 
 
 		Polygon roadPoly40 = new Polygon();
@@ -916,7 +916,7 @@ public class GUI extends Application {
 		92.8, 449.6
 		});
 
-		Road road40 = new Road(root, roadPoly40);
+		RoadGUI road40 = new RoadGUI(root, roadPoly40);
 
 
 		Polygon roadPoly41 = new Polygon();
@@ -928,7 +928,7 @@ public class GUI extends Application {
 		164.8, 407.2
 		});
 
-		Road road41 = new Road(root, roadPoly41);
+		RoadGUI road41 = new RoadGUI(root, roadPoly41);
 
 
 		Polygon roadPoly42 = new Polygon();
@@ -940,7 +940,7 @@ public class GUI extends Application {
 		248.8, 448.0
 		});
 
-		Road road42 = new Road(root, roadPoly42);
+		RoadGUI road42 = new RoadGUI(root, roadPoly42);
 
 
 		Polygon roadPoly43 = new Polygon();
@@ -952,7 +952,7 @@ public class GUI extends Application {
 		316.8, 406.4
 		});
 
-		Road road43 = new Road(root, roadPoly43);
+		RoadGUI road43 = new RoadGUI(root, roadPoly43);
 		
 		Polygon roadPoly44 = new Polygon();
 
@@ -963,7 +963,7 @@ public class GUI extends Application {
 		401.6, 444.8
 		});
 
-		Road road44 = new Road(root, roadPoly44);
+		RoadGUI road44 = new RoadGUI(root, roadPoly44);
 
 		Polygon roadPoly45 = new Polygon();
 
@@ -974,7 +974,7 @@ public class GUI extends Application {
 		472.0, 406.4
 		});
 
-		Road road45 = new Road(root, roadPoly45);
+		RoadGUI road45 = new RoadGUI(root, roadPoly45);
 
 		Polygon roadPoly46 = new Polygon();
 
@@ -985,7 +985,7 @@ public class GUI extends Application {
 		558.4, 444.8
 		});
 
-		Road road46 = new Road(root, roadPoly46);
+		RoadGUI road46 = new RoadGUI(root, roadPoly46);
 
 		Polygon roadPoly47 = new Polygon();
 
@@ -996,7 +996,7 @@ public class GUI extends Application {
 		625.6, 406.4
 		});
 
-		Road road47 = new Road(root, roadPoly47);
+		RoadGUI road47 = new RoadGUI(root, roadPoly47);
 
 		Polygon roadPoly48 = new Polygon();
 
@@ -1007,7 +1007,7 @@ public class GUI extends Application {
 		715.2, 448.8
 		});
 
-		Road road48 = new Road(root, roadPoly48);
+		RoadGUI road48 = new RoadGUI(root, roadPoly48);
 
 		Polygon roadPoly49 = new Polygon();
 
@@ -1018,7 +1018,7 @@ public class GUI extends Application {
 		724.8, 460.0
 		});
 
-		Road road49 = new Road(root, roadPoly49);
+		RoadGUI road49 = new RoadGUI(root, roadPoly49);
 
 
 		Polygon roadPoly50 = new Polygon();
@@ -1029,7 +1029,7 @@ public class GUI extends Application {
 		104.0, 540.8,
 		82.4, 540.8
 		});
-		Road road50 = new Road(root, roadPoly50);
+		RoadGUI road50 = new RoadGUI(root, roadPoly50);
 
 		Polygon roadPoly51 = new Polygon();
 
@@ -1040,7 +1040,7 @@ public class GUI extends Application {
 		240.0, 540.0
 		});
 
-		Road road51 = new Road(root, roadPoly51);
+		RoadGUI road51 = new RoadGUI(root, roadPoly51);
 
 		Polygon roadPoly52 = new Polygon();
 
@@ -1051,7 +1051,7 @@ public class GUI extends Application {
 		397.6, 540.8
 		});
 
-		Road road52 = new Road(root, roadPoly52);
+		RoadGUI road52 = new RoadGUI(root, roadPoly52);
 
 		Polygon roadPoly53 = new Polygon();
 
@@ -1062,7 +1062,7 @@ public class GUI extends Application {
 		552.0, 538.4
 		});
 
-		Road road53 = new Road(root, roadPoly53);
+		RoadGUI road53 = new RoadGUI(root, roadPoly53);
 
 		Polygon roadPoly54 = new Polygon();
 
@@ -1073,7 +1073,7 @@ public class GUI extends Application {
 		703.2, 540.0
 		});
 
-		Road road54 = new Road(root, roadPoly54);
+		RoadGUI road54 = new RoadGUI(root, roadPoly54);
 
 		Polygon roadPoly55 = new Polygon();
 
@@ -1084,7 +1084,7 @@ public class GUI extends Application {
 		107.2, 542.4
 		});
 
-		Road road55 = new Road(root, roadPoly55);
+		RoadGUI road55 = new RoadGUI(root, roadPoly55);
 		
 		Polygon roadPoly56 = new Polygon();
 
@@ -1095,7 +1095,7 @@ public class GUI extends Application {
 		240.0, 540.0
 		});
 
-		Road road56 = new Road(root, roadPoly56);
+		RoadGUI road56 = new RoadGUI(root, roadPoly56);
 
 
 		Polygon roadPoly57 = new Polygon();
@@ -1107,7 +1107,7 @@ public class GUI extends Application {
 		258.4, 541.6
 		});
 
-		Road road57 = new Road(root, roadPoly57);
+		RoadGUI road57 = new RoadGUI(root, roadPoly57);
 
 		Polygon roadPoly58 = new Polygon();
 
@@ -1118,7 +1118,7 @@ public class GUI extends Application {
 		388.0, 547.2
 		});
 
-		Road road58 = new Road(root, roadPoly58);
+		RoadGUI road58 = new RoadGUI(root, roadPoly58);
 
 		Polygon roadPoly59 = new Polygon();
 
@@ -1129,7 +1129,7 @@ public class GUI extends Application {
 		472.8, 575.2
 		});
 
-		Road road59 = new Road(root, roadPoly59);
+		RoadGUI road59 = new RoadGUI(root, roadPoly59);
 
 		Polygon roadPoly60 = new Polygon();
 
@@ -1140,7 +1140,7 @@ public class GUI extends Application {
 		542.4, 542.4
 		});
 
-		Road road60 = new Road(root, roadPoly60);
+		RoadGUI road60 = new RoadGUI(root, roadPoly60);
 
 		Polygon roadPoly61 = new Polygon();
 
@@ -1151,7 +1151,7 @@ public class GUI extends Application {
 		632.0, 571.2
 		});
 
-		Road road61 = new Road(root, roadPoly61);
+		RoadGUI road61 = new RoadGUI(root, roadPoly61);
 
 		Polygon roadPoly62 = new Polygon();
 
@@ -1162,7 +1162,7 @@ public class GUI extends Application {
 		706.4, 541.6
 		});
 
-		Road road62 = new Road(root, roadPoly62);
+		RoadGUI road62 = new RoadGUI(root, roadPoly62);
 
 		Polygon roadPoly63 = new Polygon();
 
@@ -1173,7 +1173,7 @@ public class GUI extends Application {
 		180.0, 672.0
 		});
 
-		Road road63 = new Road(root, roadPoly63);
+		RoadGUI road63 = new RoadGUI(root, roadPoly63);
 
 		Polygon roadPoly64 = new Polygon();
 
@@ -1184,7 +1184,7 @@ public class GUI extends Application {
 		318.4, 672.8
 		});
 
-		Road road64 = new Road(root, roadPoly64);
+		RoadGUI road64 = new RoadGUI(root, roadPoly64);
 
 		Polygon roadPoly65 = new Polygon();
 
@@ -1195,7 +1195,7 @@ public class GUI extends Application {
 		473.6, 671.2
 		});
 
-		Road road65 = new Road(root, roadPoly65);
+		RoadGUI road65 = new RoadGUI(root, roadPoly65);
 
 		Polygon roadPoly66 = new Polygon();
 
@@ -1206,7 +1206,7 @@ public class GUI extends Application {
 		626.4, 673.6
 		});
 
-		Road road66 = new Road(root, roadPoly66);
+		RoadGUI road66 = new RoadGUI(root, roadPoly66);
 
 		Polygon roadPoly67 = new Polygon();
 
@@ -1217,7 +1217,7 @@ public class GUI extends Application {
 		240.8, 709.6
 		});
 
-		Road road67 = new Road(root, roadPoly67);
+		RoadGUI road67 = new RoadGUI(root, roadPoly67);
 
 		Polygon roadPoly68 = new Polygon();
 
@@ -1228,7 +1228,7 @@ public class GUI extends Application {
 		312.8, 675.2
 		});
 
-		Road road68 = new Road(root, roadPoly68);
+		RoadGUI road68 = new RoadGUI(root, roadPoly68);
 
 		Polygon roadPoly69 = new Polygon();
 
@@ -1239,7 +1239,7 @@ public class GUI extends Application {
 		398.4, 712.0
 		});
 
-		Road road69 = new Road(root, roadPoly69);
+		RoadGUI road69 = new RoadGUI(root, roadPoly69);
 
 		Polygon roadPoly70 = new Polygon();
 
@@ -1250,7 +1250,7 @@ public class GUI extends Application {
 		468.8, 676.0
 		});
 
-		Road road70 = new Road(root, roadPoly70);
+		RoadGUI road70 = new RoadGUI(root, roadPoly70);
 
 		Polygon roadPoly71 = new Polygon();
 
@@ -1261,7 +1261,7 @@ public class GUI extends Application {
 		556.0, 713.6
 		});
 
-		Road road71 = new Road(root, roadPoly71);
+		RoadGUI road71 = new RoadGUI(root, roadPoly71);
 
 		Polygon roadPoly72 = new Polygon();
 
@@ -1272,11 +1272,11 @@ public class GUI extends Application {
 		560.8, 715.2
 		});
 
-		Road road72 = new Road(root, roadPoly72);
+		RoadGUI road72 = new RoadGUI(root, roadPoly72);
 
 
 
-		ArrayList<Road> theFirstRow = new ArrayList<>();
+		ArrayList<RoadGUI> theFirstRow = new ArrayList<>();
 
 		theFirstRow.add(road1);
 		theFirstRow.add(road2);
@@ -1285,14 +1285,14 @@ public class GUI extends Application {
 		theFirstRow.add(road5);
 		theFirstRow.add(road6);
 
-		ArrayList<Road> theSecondRow = new ArrayList<>();
+		ArrayList<RoadGUI> theSecondRow = new ArrayList<>();
 
 		theSecondRow.add(road7);
 		theSecondRow.add(road8);
 		theSecondRow.add(road9);
 		theSecondRow.add(road10);
 
-		ArrayList<Road> theThirdRow = new ArrayList<>();
+		ArrayList<RoadGUI> theThirdRow = new ArrayList<>();
 
 		theThirdRow.add(road11);
 		theThirdRow.add(road12);
@@ -1303,7 +1303,7 @@ public class GUI extends Application {
 		theThirdRow.add(road17);
 		theThirdRow.add(road18);
 
-		ArrayList<Road> theFourthRow = new ArrayList<>();
+		ArrayList<RoadGUI> theFourthRow = new ArrayList<>();
 
 		theFourthRow.add(road19);
 		theFourthRow.add(road20);
@@ -1311,7 +1311,7 @@ public class GUI extends Application {
 		theFourthRow.add(road22);
 		theFourthRow.add(road23);
 
-		ArrayList<Road> theFifthRow = new ArrayList<>();
+		ArrayList<RoadGUI> theFifthRow = new ArrayList<>();
 
 		theFifthRow.add(road24);
 		theFifthRow.add(road25);
@@ -1324,7 +1324,7 @@ public class GUI extends Application {
 		theFifthRow.add(road32);
 		theFifthRow.add(road33);
 
-		ArrayList<Road> theSixthRow = new ArrayList<>();
+		ArrayList<RoadGUI> theSixthRow = new ArrayList<>();
 
 		theSixthRow.add(road34);
 		theSixthRow.add(road35);
@@ -1333,7 +1333,7 @@ public class GUI extends Application {
 		theSixthRow.add(road38);
 		theSixthRow.add(road39);
 
-		ArrayList<Road> theSeventhRow = new ArrayList<>();
+		ArrayList<RoadGUI> theSeventhRow = new ArrayList<>();
 
 		theSeventhRow.add(road40);
 		theSeventhRow.add(road41);
@@ -1346,7 +1346,7 @@ public class GUI extends Application {
 		theSeventhRow.add(road48);
 		theSeventhRow.add(road49);
 
-		ArrayList<Road> theEigthRow = new ArrayList<>();
+		ArrayList<RoadGUI> theEigthRow = new ArrayList<>();
 
 		theEigthRow.add(road50);
 		theEigthRow.add(road51);
@@ -1354,7 +1354,7 @@ public class GUI extends Application {
 		theEigthRow.add(road53);
 		theEigthRow.add(road54);
 
-		ArrayList<Road> theNinthRow = new ArrayList<>();
+		ArrayList<RoadGUI> theNinthRow = new ArrayList<>();
 
 		theNinthRow.add(road55);
 		theNinthRow.add(road56);
@@ -1365,14 +1365,14 @@ public class GUI extends Application {
 		theNinthRow.add(road61);
 		theNinthRow.add(road62);
 
-		ArrayList<Road> theTenthRow = new ArrayList<>();
+		ArrayList<RoadGUI> theTenthRow = new ArrayList<>();
 
 		theTenthRow.add(road63);
 		theTenthRow.add(road64);
 		theTenthRow.add(road65);
 		theTenthRow.add(road66);
 
-		ArrayList<Road> theEleventhRow = new ArrayList<>();
+		ArrayList<RoadGUI> theEleventhRow = new ArrayList<>();
 
 		theEleventhRow.add(road67);
 		theEleventhRow.add(road68);

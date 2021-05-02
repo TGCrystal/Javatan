@@ -1,6 +1,7 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
 import java.lang.IllegalArgumentException;
+import java.util.ArrayList;
 
 /**
 * Used to keep track of and manage the current game
@@ -10,10 +11,10 @@ import java.lang.IllegalArgumentException;
 * @author Trevor Crystal
 */
 public class Game {
-    private final Board board;
+    // private final Board board;
     private PlayerColor longestRoad;
     private PlayerColor largestArmy;
-    private final ArrayList<PlayerColor> players;
+    // private final ArrayList<PlayerColor> players;
     private int currentPlayerIndex;
 
     /**
@@ -28,9 +29,9 @@ public class Game {
     *
     * @return the color of the newly added player
     */
-    public PlayerColor addPlayer() {
+    // public PlayerColor addPlayer() {
 
-    }
+    // }
 
     /**
     * Gives the longest road card to the given player
@@ -57,9 +58,9 @@ public class Game {
     *
     * @return the color indicating the player whose turn it currently is
     */
-    public PlayerColor getCurrentPlayer() {
+    // public PlayerColor getCurrentPlayer() {
 
-    }
+    // }
 
     /**
     * Advances to the next players turn

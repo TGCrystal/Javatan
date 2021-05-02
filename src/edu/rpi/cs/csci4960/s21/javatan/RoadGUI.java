@@ -1,4 +1,4 @@
-package app;
+package edu.rpi.cs.csci4960.s21.javatan;
 
 import javafx.application.Application; 
 import javafx.scene.Group; 
@@ -12,12 +12,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 
-public class Road { 
+public class RoadGUI { 
 
 	private Polygon thePolygon;
 	private Group theRoot;
 
-	public Road(Group root, Polygon polygon) {
+	public RoadGUI(Group root, Polygon polygon) {
 		theRoot = root;
 		thePolygon = polygon;
 		theRoot.getChildren().add(polygon);
