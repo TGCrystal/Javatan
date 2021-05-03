@@ -11,7 +11,13 @@ package edu.rpi.cs.csci4960.s21.javatan;
 * @author Trevor Crystal
 */
 public class Tuple<T, K> {
+    /**
+    * The first value to store
+    */
     public final T t;
+    /**
+    * The second value to store
+    */
     public final K k;
 
     /**

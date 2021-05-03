@@ -1,9 +1,9 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
-import javafx.application.Application; 
-import javafx.scene.Group; 
-import javafx.scene.Scene; 
-import javafx.scene.shape.Polygon; 
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 
 import java.net.URISyntaxException;
@@ -13,12 +13,28 @@ import javafx.event.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-
-public class Settlement { 
+/**
+* A class used by the GUI to help display settlements
+*
+* @author Chuanfeng Xiong
+* @author Chris Lamberston
+* @author Ruben McWilliams
+* @author Trevor Crystal
+*/
+public class Settlement {
 	private double xCoord;
 	private double yCoord;
+	/**
+	* The button used to place the settlement
+	*/
 	public Button placeSettlementBtn;
+	/**
+	* The image used to represent the single house settlement
+	*/
 	public ImageView houseImg;
+	/**
+	* The image used to represent the city
+	*/
 	public ImageView cityImg;
 	private Group theRoot;
 	private Type type = Type.NONE;
@@ -28,6 +44,15 @@ public class Settlement {
 	private int row;
 	private int col;
 
+	/**
+	* The sole constructor for the Settlement class
+	*
+	* @param root the Group that this settlement belongs to
+	* @param xCoord the x coordinate of this settlement
+	* @param yCoord the y coordinate of this settlement
+	* @param row the row index of this settlement
+	* @param col the column index of this settlement
+	*/
 	public Settlement(Group root, double xCoord, double yCoord, int row, int col) {
 		theRoot = root;
 		this.xCoord = xCoord;
@@ -36,6 +61,11 @@ public class Settlement {
 		this.col = col;
 	}
 
+	/**
+	* Used to return a tuple containing the row and column indices of this settlement
+	*
+	* @return a tuple with the row as the first value and the column as the second
+	*/
 	public Tuple<Integer, Integer> getRowAndCol() {
 		return new Tuple<>(row, col);
 	}
@@ -44,6 +74,9 @@ public class Settlement {
 	// 	String[] types = new String[] {"forest", "forest", "forest", "field", "field", "field", "pasture", "pasture", "pasture", "pasture"};
 	// }
 
+	/**
+	* Create the button used to handle events when it is clicked
+	*/
 	public void placeButton() {
 		placeSettlementBtn = new Button();
 		//placeSettlementBtn.setStyle("-fx-border-color: transparent;-fx-border-width: 0;-fx-background-color: transparent;");
@@ -55,20 +88,25 @@ public class Settlement {
 			}
 		});
 		placeSettlementBtn.setLayoutX(xCoord);
-    	placeSettlementBtn.setLayoutY(yCoord);
+		placeSettlementBtn.setLayoutY(yCoord);
 
-        theRoot.getChildren().add(placeSettlementBtn);
+		theRoot.getChildren().add(placeSettlementBtn);
 	}
 
+	/**
+	* If the player owns this settlement, upgrade it, otherwise claim ownership and make it a house
+	*
+	* @param color the color of the player attempting to process this settlement
+	*/
 	public void upgradeOrAssignToPlayer(String color) {
 		switch (type) {
-			case NONE:
-				makeAHouse(color);
-				break;
-			case HOUSE:
-				makeCity(color);
-			default:
-				break;
+		case NONE:
+			makeAHouse(color);
+			break;
+		case HOUSE:
+			makeCity(color);
+		default:
+			break;
 		}
 	}
 
@@ -88,7 +126,7 @@ public class Settlement {
 		}
 		houseImg = new ImageView(anImage);
 		houseImg.setLayoutX(xCoord);
-    	houseImg.setLayoutY(yCoord);
+		houseImg.setLayoutY(yCoord);
 		theRoot.getChildren().add(houseImg);
 
 	}
@@ -107,7 +145,7 @@ public class Settlement {
 		}
 		cityImg = new ImageView(anImage);
 		cityImg.setLayoutX(xCoord);
-    	cityImg.setLayoutY(yCoord);
+		cityImg.setLayoutY(yCoord);
 		theRoot.getChildren().add(cityImg);
 	}
 
@@ -115,5 +153,5 @@ public class Settlement {
 		return getClass().getResource(imageName).toString();
 	}
 
-	
+
 }
