@@ -1472,7 +1472,7 @@ public class GUI extends Application {
 		settlements.add(sixthRow);
 
 
-		Image lumberCardImage = new Image("lumber.png", 100, 200, false, false);
+		Image lumberCardImage = new Image("src/edu/rpi/cs/csci4960/s21/javatan/lumber.png", 100, 200, false, false);
 
 		ImageView lumberCard = new ImageView(lumberCardImage);
 
@@ -1481,7 +1481,7 @@ public class GUI extends Application {
 
 		root.getChildren().add(lumberCard);
 
-		Image grainCardImage = new Image("grain.png", 100, 200, false, false);
+		Image grainCardImage = new Image("src/edu/rpi/cs/csci4960/s21/javatan/grain.png", 100, 200, false, false);
 
 		ImageView grainCard = new ImageView(grainCardImage);
 
@@ -1491,7 +1491,7 @@ public class GUI extends Application {
 		root.getChildren().add(grainCard);
 
 
-		Image woolCardImage = new Image("wool.png", 100, 200, false, false);
+		Image woolCardImage = new Image("src/edu/rpi/cs/csci4960/s21/javatan/wool.png", 100, 200, false, false);
 
 		ImageView woolCard = new ImageView(woolCardImage);
 
@@ -1500,7 +1500,7 @@ public class GUI extends Application {
 
 		root.getChildren().add(woolCard);
 
-		Image brickCardImage = new Image("brick.png", 100, 200, false, false);
+		Image brickCardImage = new Image("src/edu/rpi/cs/csci4960/s21/javatan/brick.png", 100, 200, false, false);
 
 		ImageView brickCard = new ImageView(brickCardImage);
 
@@ -1509,7 +1509,7 @@ public class GUI extends Application {
 
 		root.getChildren().add(brickCard);
 
-		Image oreCardImage = new Image("ore.png", 100, 200, false, false);
+		Image oreCardImage = new Image("src/edu/rpi/cs/csci4960/s21/javatan/ore.png", 100, 200, false, false);
 
 		ImageView oreCard = new ImageView(oreCardImage);
 
