@@ -1,5 +1,7 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
+import java.io.Serializable;
+
 /**
 * A class to represent a building (city/settlement)
 *
@@ -8,7 +10,7 @@ package edu.rpi.cs.csci4960.s21.javatan;
 * @author Ruben McWilliams
 * @author Trevor Crystal
 */
-public class Building {
+public class Building implements Serializable {
     private PlayerColor ownership;
     // True for settlement, false for city
     private boolean isSettlement;
@@ -18,7 +20,8 @@ public class Building {
     * it as a settlement.
     */
     public Building() {
-
+        ownership = PlayerColor.NONE;
+        isSettlement = true;
     }
 
     /**
@@ -27,7 +30,7 @@ public class Building {
     * @param newOwner the new owner of this building
     */
     public void setOwner(PlayerColor newOwner) {
-
+        ownership = newOwner;
     }
 
     /**
@@ -36,16 +39,20 @@ public class Building {
     * @return the color of the owner of this building
     */
     public PlayerColor getOwner() {
-
+        return ownership;
     }
 
     /**
-    * Used to upgrade the building from city to a settlement
+    * Used to upgrade the building from city to a settlement if the city has an owner
     *
     * @return false if the building is already a city or has no owner, true otherwise
     */
     public boolean upgrade() {
-
+        if (ownership != PlayerColor.NONE && isSettlement) {
+            isSettlement = false;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -54,6 +61,6 @@ public class Building {
     * @return true if the building is a settlement, false if it is a city
     */
     public boolean isSettlement() {
-
+        return isSettlement;
     }
 }
