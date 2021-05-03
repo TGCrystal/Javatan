@@ -117,9 +117,9 @@ public class Client {
      * @param col Col of road in question
      */
     private void setThisPlayerRoad(int row, int col) {
-        // TODO: Resource management
-        if (localBoardCopy.addRoad(row, col, thisPlayerColor)) {
+        if ( player.tryBuyRoad(false) && localBoardCopy.addRoad(row, col, thisPlayerColor)) {
             // TODO: Send to server
+            player.tryBuyRoad(true);
             GUI.setColorOfRoadGUI(row, col, playerColorToStringColor(thisPlayerColor));
         }
     }
@@ -142,9 +142,9 @@ public class Client {
      * @param col Col of the settlement in question
      */
     private void addThisPlayerSettlement(int row, int col) {
-        if (localBoardCopy.addBuilding(row, col, thisPlayerColor)) {
+        if (player.tryBuySettlement(false) && localBoardCopy.addBuilding(row, col, thisPlayerColor)) {
             // TODO: Send to server
-            // TODO: Resource management
+            player.tryBuySettlement(true);
             GUI.setColorOfSettlement(row, col, playerColorToStringColor(thisPlayerColor));
         }
             
@@ -168,9 +168,9 @@ public class Client {
      * @param col Col of the settlement in question
      */
     private void upgradeThisPlayerSettlementToCity(int row, int col) {
-        if (localBoardCopy.upgradeBuilding(row, col)) {
+        if (player.tryBuyCity(false) && localBoardCopy.upgradeBuilding(row, col)) {
             // TODO: Send to server
-            // TODO: Resource management
+            player.tryBuyCity(true);
             GUI.setColorOfSettlement(row, col, playerColorToStringColor(thisPlayerColor));
         }
     }

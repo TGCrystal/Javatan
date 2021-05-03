@@ -1,6 +1,8 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -83,6 +85,36 @@ public class Player {
     */
     public void addVictoryPoints(int points) {
         victoryPoints += points;
+    }
+
+    /**
+     * Checks to see if a player can afford a road, and optionally removes them.
+     * @param actuallyRemoveResources Whether to actually remove resources or not
+     * @return Returns true if the player can afford a road, and false if not.
+     */
+    public Boolean tryBuyRoad(boolean actuallyRemoveResources) {
+        // Player needs a brick and a lumber
+        return tryRemoveResources(actuallyRemoveResources, ResourceCardType.BRICK, ResourceCardType.LUMBER);
+    }
+
+    /**
+     * Checks to see if a player can afford a settlement, and optionally removes them. 
+     * @param actuallyRemoveResources Whether to actually remove resources or not
+     * @return Returns true if player can afford a settlement, and false if not.
+     */
+    public boolean tryBuySettlement(boolean actuallyRemoveResources) {
+        return tryRemoveResources(actuallyRemoveResources, ResourceCardType.BRICK, ResourceCardType.LUMBER, 
+            ResourceCardType.WOOL, ResourceCardType.GRAIN);
+    }
+
+    /**
+     * Checks to see if a player can afford a city, and optionally removes them. 
+     * @param actuallyRemoveResources Whether to actually remove resources or not
+     * @return Returns true if player can afford a city, and false if not.
+     */
+    public boolean tryBuyCity(boolean actuallyRemoveResources) {
+        return tryRemoveResources(actuallyRemoveResources, ResourceCardType.ORE, ResourceCardType.ORE, ResourceCardType.ORE,
+            ResourceCardType.GRAIN, ResourceCardType.GRAIN);
     }
 
     /**
@@ -206,6 +238,33 @@ public class Player {
     */
     public PlayerColor getPlayerColor() {
         return this.color;
+    }
+
+    /**
+     * Removes the given card types from the Player if they have them.
+     * Returns true if player has cards and they are removed, and false otherwise.
+     * @param cardTypesToRemove Card types to remove from player's hand
+     * @return True if successfully removed, false otherwise
+     */
+    private Boolean tryRemoveResources(Boolean actuallyRemoveResources, ResourceCardType... cardTypesToRemove) {
+        ArrayList<ResourceCardType> typesPlayerHas = new ArrayList<>();
+        for (ResourceCard card : resourceCards) {
+            typesPlayerHas.add(card.getType());
+        }
+
+        for (ResourceCardType cardType : cardTypesToRemove) {
+            if (!typesPlayerHas.remove(cardType)) {
+                return false;
+            }
+        }
+
+        if (actuallyRemoveResources) {
+            for (ResourceCardType cardType : cardTypesToRemove) {
+                removeResourceCard(cardType);
+            }
+        }
+
+        return true;
     }
 
 }

@@ -245,7 +245,7 @@ public class GUI extends Application {
 	}
    @Override 
    public void start(Stage stage) {        
-	   client = new Client(this);
+	   client = new Client();
       
 
 	//getStylesheets().add(getClass().getResource("style.css").toExternalForm());
