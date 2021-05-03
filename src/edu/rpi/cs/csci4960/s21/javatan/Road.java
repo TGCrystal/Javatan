@@ -1,6 +1,9 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
+import java.io.Serializable;
+
 enum PortType {NONE, BRICK, LUMBER, ORE, GRAIN, WOOL, THREE};
+
 
 /**
 * A class used to store information about a road. The owner of the road and whether there
@@ -11,7 +14,7 @@ enum PortType {NONE, BRICK, LUMBER, ORE, GRAIN, WOOL, THREE};
 * @author Ruben McWilliams
 * @author Trevor Crystal
 */
-public class Road {
+public class Road implements Serializable {
     private PlayerColor ownership;
     private final PortType port;
 

@@ -1,5 +1,7 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
+import java.io.Serializable;
+
 /**
 * A class to represent a building (city/settlement)
 *
@@ -8,7 +10,7 @@ package edu.rpi.cs.csci4960.s21.javatan;
 * @author Ruben McWilliams
 * @author Trevor Crystal
 */
-public class Building {
+public class Building implements Serializable {
     private PlayerColor ownership;
     // True for settlement, false for city
     private boolean isSettlement;

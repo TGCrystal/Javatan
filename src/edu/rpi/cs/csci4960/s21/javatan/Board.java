@@ -1,5 +1,6 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /** Tile indices
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 * @author Ruben McWilliams
 * @author Trevor Crystal
 */
-public class Board {
+public class Board implements Serializable {
     private Tile[][] tiles;
     private Road[][] roads;
     private Building[][] buildings;
@@ -177,6 +178,53 @@ public class Board {
             }
         }
         return cardsToAward;
+    }
+
+    /**
+     * Returns the roads adjacent to the road at the given coordinates.
+     * @param roadRow Row index of the road to get adjacent roads of 
+     * @param roadCol Column index of the road to get adjacent roads of
+     * @return
+     */
+    private Road[] getRoadsAdjacentToRoad(int roadRow, int roadCol) {
+        Road[] adjacentRoads = new Road[4];
+        if (roadRow % 2 == 0) {
+            adjacentRoads[0] = roads[roadRow][roadCol-1];
+            adjacentRoads[1] = roads[roadRow][roadCol+1];
+            if (roadCol % 2 == 0) {
+                adjacentRoads[2] = roads[roadRow-1][roadCol];
+                adjacentRoads[3] = roads[roadRow+1][roadCol+1];
+            } else {
+                adjacentRoads[2] = roads[roadRow-1][roadCol+1];
+                adjacentRoads[3] = roads[roadRow+1][roadCol];
+            }
+        } else {
+            adjacentRoads[0] = roads[roadRow-1][roadCol-1];
+            adjacentRoads[1] = roads[roadRow-1][roadCol];
+            adjacentRoads[2] = roads[roadRow+1][roadCol];
+            adjacentRoads[3] = roads[roadRow+1][roadCol-1];
+        }
+        return adjacentRoads;
+    }
+
+    /**
+     * Returns the buildings adjacent to a given road
+     * @param roadRow Row index of the road to get adjacent buildings of
+     * @param roadCol Column index of the road to get adjacent buildings of 
+     * @return
+     */
+    private Building[] getBuildingsAdjacentToRoad(int roadRow, int roadCol) {
+        Building[] adjacentBuildings = new Building[2];
+        if (roadRow % 2 == 0) {
+            adjacentBuildings[0] = buildings[roadRow/2][roadCol];
+            adjacentBuildings[1] = buildings[roadRow/2][roadCol+1];
+        } else {
+            // Odd row means vertical road
+            int buildingRow = roadRow / 2;
+            adjacentBuildings[0] = buildings[buildingRow][roadCol];
+            adjacentBuildings[1] = buildings[buildingRow+1][roadCol];
+        }
+        return adjacentBuildings;
     }
 
     /**

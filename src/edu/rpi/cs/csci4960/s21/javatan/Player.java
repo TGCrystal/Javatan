@@ -1,5 +1,6 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Random;
 * @author Ruben McWilliams
 * @author Trevor Crystal
 */
-public class Player {
+public class Player implements Serializable {
     private final ArrayList<ResourceCard> resourceCards;
     private final ArrayList<DevelopmentCard> developmentCards;
     private boolean hasLongestRoad;
