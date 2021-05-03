@@ -1,5 +1,7 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
+import java.io.Serializable;
+
 enum TileType {HILLS, FOREST, MOUNTAINS, FIELDS, PASTURE, DESERT};
 
 /**
@@ -10,7 +12,7 @@ enum TileType {HILLS, FOREST, MOUNTAINS, FIELDS, PASTURE, DESERT};
 * @author Ruben McWilliams
 * @author Trevor Crystal
 */
-public class Tile {
+public class Tile implements Serializable {
     private final TileType type;
     private final int num;
 
