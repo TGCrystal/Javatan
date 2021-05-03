@@ -160,12 +160,18 @@ public class Board {
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
                 Tile tile = tiles[row][col];
-                if (tile.getNum() == rollValue && tile.getType() != TileType.DESERT
+                if (tile != null && tile.getNum() == rollValue && tile.getType() != TileType.DESERT
                         && !(robberRow == row && robberColumn == col)) {
                     Building[] adjBuildings = getBuildingsAroundTile(row, col);
                     for (Building building : adjBuildings) {
-                        cardsToAward.add(new Tuple<ResourceCard,PlayerColor>(
-                            buildResourceCardFromTile(tile), building.getOwner()));
+                        if (building.getOwner() != PlayerColor.NONE) {
+                            cardsToAward.add(new Tuple<ResourceCard,PlayerColor>(
+                                buildResourceCardFromTile(tile), building.getOwner()));
+                            if (!building.isSettlement()) {
+                                cardsToAward.add(new Tuple<ResourceCard,PlayerColor>(
+                                    buildResourceCardFromTile(tile), building.getOwner()));
+                            }
+                        }
                     }
                 }
             }
