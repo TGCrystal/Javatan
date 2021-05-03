@@ -1,6 +1,10 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 /**
 * This class is used to keep track of the player's cards, color, and victory points
@@ -10,7 +14,7 @@ import java.util.ArrayList;
 * @author Ruben McWilliams
 * @author Trevor Crystal
 */
-public class Player {
+public class Player implements Serializable {
     private final ArrayList<ResourceCard> resourceCards;
     private final ArrayList<DevelopmentCard> developmentCards;
     private boolean hasLongestRoad;
@@ -36,21 +40,21 @@ public class Player {
     /**
     * Adds a given progress card to the player's hand
     *
-    * @param card the progress card to add
+    * @param cardType the type of progress card to add
     */
-    public void addResourceCard(ResourceCard card) {
+    public void addResourceCard(ResourceCardType cardType) {
         //Chuanfeng Xiong
-        this.resourceCards.add(card);
+        this.resourceCards.add(new ResourceCard(cardType));
     }
 
     /**
     * Adds a given development card to the player's hand
     *
-    * @param card the development card to add
+    * @param cardType the type of development card to add
     */
-    public void addDevelopmentCard(DevelopmentCard card) {
+    public void addDevelopmentCard(DevelopmentCardType cardType) {
         //Chuanfeng Xiong
-        this.developmentCards.add(card);
+        this.developmentCards.add(new DevelopmentCard(cardType));
     }
 
     /**
@@ -58,7 +62,10 @@ public class Player {
     * If the player already has the card, then nothing happens.
     */
     public void addLongestRoad() {
-
+        if (!hasLongestRoad) {
+            hasLongestRoad = true;
+            victoryPoints += 2;
+        }
     }
 
     /**
@@ -66,7 +73,10 @@ public class Player {
     * If the player already has the card, then nothing happens.
     */
     public void addLargestArmy() {
-
+        if (!hasLargestArmy) {
+            hasLargestArmy = true;
+            victoryPoints += 2;
+        }
     }
 
     /**
@@ -75,27 +85,71 @@ public class Player {
     * @param points the number of points to add
     */
     public void addVictoryPoints(int points) {
+        victoryPoints += points;
+    }
 
+    /**
+     * Checks to see if a player can afford a road, and optionally removes them.
+     * @param actuallyRemoveResources Whether to actually remove resources or not
+     * @return Returns true if the player can afford a road, and false if not.
+     */
+    public Boolean tryBuyRoad(boolean actuallyRemoveResources) {
+        // Player needs a brick and a lumber
+        return tryRemoveResources(actuallyRemoveResources, ResourceCardType.BRICK, ResourceCardType.LUMBER);
+    }
+
+    /**
+     * Checks to see if a player can afford a settlement, and optionally removes them. 
+     * @param actuallyRemoveResources Whether to actually remove resources or not
+     * @return Returns true if player can afford a settlement, and false if not.
+     */
+    public boolean tryBuySettlement(boolean actuallyRemoveResources) {
+        return tryRemoveResources(actuallyRemoveResources, ResourceCardType.BRICK, ResourceCardType.LUMBER, 
+            ResourceCardType.WOOL, ResourceCardType.GRAIN);
+    }
+
+    /**
+     * Checks to see if a player can afford a city, and optionally removes them. 
+     * @param actuallyRemoveResources Whether to actually remove resources or not
+     * @return Returns true if player can afford a city, and false if not.
+     */
+    public boolean tryBuyCity(boolean actuallyRemoveResources) {
+        return tryRemoveResources(actuallyRemoveResources, ResourceCardType.ORE, ResourceCardType.ORE, ResourceCardType.ORE,
+            ResourceCardType.GRAIN, ResourceCardType.GRAIN);
     }
 
     /**
     * Removes a given resource card from the player's hand, returns to indicate if the removal
     * was successful
     *
+    * @param cardType the type of resource card to remove
     * @return true if the card was successfully removed, false otherwise
     */
-    public boolean removeResourceCard(ResourceCard card) {
-
+    public boolean removeResourceCard(ResourceCardType cardType) {
+        for (int i = 0; i < resourceCards.size(); i++) {
+            if (resourceCards.get(i).getType() == cardType) {
+                resourceCards.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
     * Removes a given development card from the player's hand, returns to indicate if the removal
     * was successful
     *
+    * @param cardType the type of development card to remove
     * @return true if the card was successfully removed, false otherwise
     */
-    public boolean removeDevelopmentCard(DevelopmentCard card) {
-
+    public boolean removeDevelopmentCard(DevelopmentCardType cardType) {
+        for (int i = 0; i < developmentCards.size(); i++) {
+            if (developmentCards.get(i).getType() == cardType) {
+                developmentCards.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -104,7 +158,11 @@ public class Player {
     * @return the card that was removed, null if the deck was empty before this function was called
     */
     public ResourceCard removeRandomCard() {
-
+        if (resourceCards.size() == 0)
+            return null;
+        Random rand = new Random();
+        int i = rand.nextInt(resourceCards.size());
+        return resourceCards.remove(i);
     }
 
     /**
@@ -112,7 +170,10 @@ public class Player {
     * If the player does not have the card, then nothing happens.
     */
     public void removeLongestRoad() {
-
+        if (hasLongestRoad) {
+            hasLongestRoad = false;
+            victoryPoints -= 2;
+        }
     }
 
     /**
@@ -120,7 +181,28 @@ public class Player {
     * If the player does not have the card, then nothing happens.
     */
     public void removeLargestArmy() {
+        if (hasLargestArmy) {
+            hasLargestArmy = false;
+            victoryPoints -= 2;
+        }
+    }
 
+    /**
+    * Checks if the player has the longest road card
+    *
+    * @return true if this player has the longest road card
+    */
+    public boolean hasLongestRoad() {
+        return this.hasLongestRoad;
+    }
+
+    /**
+    * Checks if the player has the largest army card
+    *
+    * @return true if this player has the largest army card
+    */
+    public boolean hasLargestArmy() {
+        return this.hasLargestArmy;
     }
 
     /**
@@ -129,7 +211,7 @@ public class Player {
     * @return the number of victory points
     */
     public int getVictoryPoints() {
-
+        return this.victoryPoints;
     }
 
     /**
@@ -138,7 +220,7 @@ public class Player {
     * @return the number of resource cards
     */
     public int getNumResourceCards() {
-
+        return this.resourceCards.size();
     }
 
     /**
@@ -147,7 +229,7 @@ public class Player {
     * @return the number of development cards
     */
     public int getNumDevelopmentCards() {
-
+        return this.developmentCards.size();
     }
 
     /**
@@ -156,7 +238,34 @@ public class Player {
     * @return the color of this player
     */
     public PlayerColor getPlayerColor() {
+        return this.color;
+    }
 
+    /**
+     * Removes the given card types from the Player if they have them.
+     * Returns true if player has cards and they are removed, and false otherwise.
+     * @param cardTypesToRemove Card types to remove from player's hand
+     * @return True if successfully removed, false otherwise
+     */
+    private Boolean tryRemoveResources(Boolean actuallyRemoveResources, ResourceCardType... cardTypesToRemove) {
+        ArrayList<ResourceCardType> typesPlayerHas = new ArrayList<>();
+        for (ResourceCard card : resourceCards) {
+            typesPlayerHas.add(card.getType());
+        }
+
+        for (ResourceCardType cardType : cardTypesToRemove) {
+            if (!typesPlayerHas.remove(cardType)) {
+                return false;
+            }
+        }
+
+        if (actuallyRemoveResources) {
+            for (ResourceCardType cardType : cardTypesToRemove) {
+                removeResourceCard(cardType);
+            }
+        }
+
+        return true;
     }
 
 }
