@@ -53,6 +53,7 @@ public class GUI extends Application {
 	}
 
 	private static Polygon getHexTile(int x, int y) {
+		System.out.println("Trying to get hex tile " + x + "," + y);
 		if (x == 2) {
 			return polygons.get(x).get(y);
 		} else {
@@ -111,7 +112,7 @@ public class GUI extends Application {
 		oreNumber.setText(String.valueOf(num));
 	}
 
-	private static void setColorOfHexTile(int x, int y, String color) {
+	public static void setColorOfHexTile(int x, int y, String color) {
 		if (color.equals("darkgreen")) {
 			getHexTile(x, y).setFill(javafx.scene.paint.Color.DARKGREEN);
 		} else if (color.equals("lightgreen")) {
@@ -303,7 +304,7 @@ public class GUI extends Application {
 	}
 	@Override
 	public void start(Stage stage) {
-
+		
 
 		//getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
@@ -1613,6 +1614,8 @@ public class GUI extends Application {
 
 		//Displaying the contents of the stage
 		stage.show();
+
+		client = new Client();
 	}
 
 	/**

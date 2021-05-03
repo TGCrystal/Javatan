@@ -43,7 +43,7 @@ public class Server extends Thread {
             this.serverSocket = new ServerSocket(port, 0, InetAddress.getByName(ip));
             executorService.execute(this);
         } catch (IOException e) {
-            this.gui.writeOutputMessage(" - The Server could not be opened!");
+            // this.gui.writeOutputMessage(" - The Server could not be opened!");
             return;
         }
     }
@@ -76,7 +76,7 @@ public class Server extends Thread {
 
                 //Outprint
                 String outputMessage = " - client " + client.getInetAddress() + ":" + client.getPort() + " join the game!";
-                this.gui.writeOutputMessage(outputMessage);
+                // this.gui.writeOutputMessage(outputMessage);
                 System.out.println(outputMessage);
 
                 //Send color they are assigned to player
@@ -94,7 +94,7 @@ public class Server extends Thread {
                 count++;
             } catch (IOException e) {
                 System.out.println("Could not get a client.");
-                this.gui.writeOutputMessage(" - Could not open output stream!");
+                // this.gui.writeOutputMessage(" - Could not open output stream!");
                 return;
             }
 
