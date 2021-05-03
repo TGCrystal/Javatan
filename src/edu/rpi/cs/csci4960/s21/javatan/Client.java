@@ -3,6 +3,8 @@ package edu.rpi.cs.csci4960.s21.javatan;
 import java.net.*;
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,10 +27,14 @@ public class Client extends Thread {
     private Board localBoardCopy;
     private PlayerColor thisPlayerColor;
     ExecutorService executorService;
+    private Boolean hasFreeSettlement = true;
+    private Boolean hasFreeRoad = true;
 
     public Client() {
         super();
         localBoardCopy = new Board();
+        thisPlayerColor = PlayerColor.BLUE;
+        player = new Player(thisPlayerColor);
     }
 
     /**
@@ -106,6 +112,7 @@ public class Client extends Thread {
      * @param col Col of settlement in question
      */
     public void handleThisPlayerClickingSettlement(int row, int col) {
+        System.out.println("Received click from settlement " + row + "," + col);
         Building building = localBoardCopy.getBuilding(row, col);
         if (building.getOwner() == PlayerColor.NONE)
             addThisPlayerSettlement(row, col);
@@ -124,6 +131,15 @@ public class Client extends Thread {
         Road road = localBoardCopy.getRoad(row, col);
         if (road.getOwner() == PlayerColor.NONE)
             setThisPlayerRoad(row, col);
+    }
+
+    public void rollDiceAndDistributeResources() {
+        Random random = new Random();
+        int roll = random.nextInt(7);
+        // TODO: Send roll to server
+        ArrayList<Tuple<ResourceCard, PlayerColor>> list = 
+            localBoardCopy.processTurn(roll);
+        player.addThisPlayersResources(list);
     }
 
     //#region Private helpers to manage roads and settlements
@@ -148,18 +164,12 @@ public class Client extends Thread {
      * @param col Col of road in question
      */
     private void setThisPlayerRoad(int row, int col) {
-//        if ( player.tryBuyRoad(false) && localBoardCopy.addRoad(row, col, thisPlayerColor)) {
-        // TODO: Send to
-        Action action = new Action();
-        action.setActionCode("4");
-        action.setRow(row);
-        action.setCol(col);
-        Message message = new Message(this.player.getPlayerColor());
-        message.setAction(action);
-        this.sendMessage(message);
-        player.tryBuyRoad(true);
-//            GUI.setColorOfRoadGUI(row, col, playerColorToStringColor(thisPlayerColor));
-//        }
+       if ( (player.tryBuyRoad(false) || hasFreeRoad) && localBoardCopy.addRoad(row, col, thisPlayerColor)) {
+            // TODO: Send to server
+            player.tryBuyRoad(true);
+            GUI.setColorOfRoadGUI(row, col, playerColorToStringColor(thisPlayerColor));
+            if (hasFreeRoad) hasFreeRoad = false;
+       }
     }
 
     /**
@@ -182,9 +192,13 @@ public class Client extends Thread {
      * @param col Col of the settlement in question
      */
     private void addThisPlayerSettlement(int row, int col) {
-        if (player.tryBuySettlement(false) && localBoardCopy.addBuilding(row, col, thisPlayerColor)) {
+
+        if (player.tryBuySettlement(false) && 
+            (localBoardCopy.addBuilding(row, col, thisPlayerColor)) || 
+                (hasFreeSettlement && localBoardCopy.addBuildingInit(row, col, thisPlayerColor))) {
             // TODO: Send to server
             player.tryBuySettlement(true);
+            if (hasFreeSettlement) hasFreeSettlement = false;
             GUI.setColorOfSettlement(row, col, playerColorToStringColor(thisPlayerColor));
         }
 

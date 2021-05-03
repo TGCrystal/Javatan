@@ -53,7 +53,6 @@ public class GUI extends Application {
 	}
 
 	private static Polygon getHexTile(int x, int y) {
-		System.out.println("Trying to get hex tile " + x + "," + y);
 		if (x == 2) {
 			return polygons.get(x).get(y);
 		} else {
@@ -87,9 +86,36 @@ public class GUI extends Application {
 				Tuple<Integer, Integer> t = row.get(j).getRowAndCol();
 				if (t.t == x && t.k == y) {
 					row.get(j).upgradeOrAssignToPlayer(color);
+					return;
 				}
 			}
 		}
+	}
+
+	public static void incrementResourceNum(ResourceCardType type) {
+		Text textField;
+		switch (type) {
+			case BRICK:
+				textField = brickNumber;
+				break;
+			case LUMBER:
+				textField = lumberNumber;
+				break;
+			case ORE:
+				textField = oreNumber;
+				break;
+			case GRAIN:
+				textField = grainNumber;
+				break;
+			case WOOL:
+				textField = woolNumber;
+				break;
+			default:
+				return;
+		}
+		int curNum = Integer.parseInt(textField.getText());
+		curNum++;
+		textField.setText(Integer.toString(curNum));
 	}
 
 	private static void setLumberNum(int num) {
@@ -152,7 +178,6 @@ public class GUI extends Application {
 				}
 				root.getChildren().add(polygon);
 			} else if (i > 2 && i <= 6) {
-				System.out.println("got here");
 				//second row of grid
 				Polygon polygon = new Polygon();
 				setPolygonSides(polygon, currentX, currentY, radius, 6);
@@ -1552,6 +1577,25 @@ public class GUI extends Application {
 		oreNumber.setY(340);
 		oreNumber.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
 		root.getChildren().add(oreNumber);
+
+		Button rollDiceButton = new Button();
+		rollDiceButton.setStyle("-fx-background-color: darkgray");
+		rollDiceButton.setMinWidth(30);
+		rollDiceButton.setLayoutX(910);
+		rollDiceButton.setLayoutY(400);
+		rollDiceButton.setOnAction(new EventHandler<ActionEvent>() { 
+			@Override
+			public void handle(ActionEvent e) {
+				GUI.client.rollDiceAndDistributeResources();
+			}
+		});
+		root.getChildren().add(rollDiceButton);
+		
+		Text rollDiceText = new Text();
+		rollDiceText.setText("Click here to roll dice and distribute resources");
+		rollDiceText.setLayoutX(945);
+		rollDiceText.setLayoutY(415);
+		root.getChildren().add(rollDiceText);
 
 		setLumberNum(0);
 		setGrainNum(0);

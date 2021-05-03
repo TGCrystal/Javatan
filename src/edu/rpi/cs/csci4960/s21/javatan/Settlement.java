@@ -97,46 +97,49 @@ public class Settlement {
 	*/
 	public void upgradeOrAssignToPlayer(String color) {
 		switch (type) {
-		case NONE:
-			makeAHouse(color);
-			break;
-		case HOUSE:
-			makeCity(color);
-		default:
-			break;
+			case NONE:
+				makeAHouse(color);
+				break;
+			case HOUSE:
+				makeCity(color);
+			default:
+				break;
 		}
+		if (type.equals(Type.NONE)) type = Type.HOUSE;
+		if (type.equals(Type.HOUSE)) type = Type.CITY;
 	}
 
 	public void makeAHouse(String color) {
 		theRoot.getChildren().remove(placeSettlementBtn);
 		Image anImage = null;
 		if (color.equals("red")) {
-			anImage = new Image("redHouse.png", 25, 25, false, false);
+			anImage = new Image(getFilePath("redHouse.png"), 25, 25, false, false);
 		} else if (color.equals("orange")) {
-			anImage = new Image("orangeHouse.png", 25, 25, false, false);
+			anImage = new Image(getFilePath("orangeHouse.png"), 25, 25, false, false);
 		} else if (color.equals("white")) {
-			anImage = new Image("whiteHouse.png", 25, 25, false, false);
+			anImage = new Image(getFilePath("whiteHouse.png"), 25, 25, false, false);
 		} else if (color.equals("blue")) {
-			anImage = new Image("blueHouse.png", 25, 25, false, false);
+			anImage = new Image(getFilePath("blueHouse.png"), 25, 25, false, false);
 		}
 		houseImg = new ImageView(anImage);
 		houseImg.setLayoutX(xCoord);
 		houseImg.setLayoutY(yCoord);
 		theRoot.getChildren().add(houseImg);
-
+		this.placeButton();
 	}
 
 	public void makeCity(String color) {
+		theRoot.getChildren().remove(placeSettlementBtn);
 		theRoot.getChildren().remove(houseImg);
 		Image anImage = null;
 		if (color.equals("red")) {
-			anImage = new Image("redCity.png", 25, 25, false, false);
+			anImage = new Image(getFilePath("redCity.png"), 25, 25, false, false);
 		} else if (color.equals("orange")) {
-			anImage = new Image("orangeCity.png", 25, 25, false, false);
+			anImage = new Image(getFilePath("orangeCity.png"), 25, 25, false, false);
 		} else if (color.equals("white")) {
-			anImage = new Image("whiteCity.png", 25, 25, false, false);
+			anImage = new Image(getFilePath("whiteCity.png"), 25, 25, false, false);
 		} else if (color.equals("blue")) {
-			anImage = new Image("blueCity.png", 25, 25, false, false);
+			anImage = new Image(getFilePath("blueCity.png"), 25, 25, false, false);
 		}
 		cityImg = new ImageView(anImage);
 		cityImg.setLayoutX(xCoord);
@@ -144,5 +147,7 @@ public class Settlement {
 		theRoot.getChildren().add(cityImg);
 	}
 
-
+	private String getFilePath(String name) {
+		return getClass().getResource(name).toString();
+	}
 }

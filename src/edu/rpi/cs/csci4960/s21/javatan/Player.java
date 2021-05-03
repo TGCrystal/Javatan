@@ -42,9 +42,9 @@ public class Player implements Serializable {
     *
     * @param cardType the type of progress card to add
     */
-    public void addResourceCard(ResourceCardType cardType) {
-        //Chuanfeng Xiong
-        this.resourceCards.add(new ResourceCard(cardType));
+    public void addResourceCard(ResourceCard card) {
+        this.resourceCards.add(card);
+        GUI.incrementResourceNum(card.getType());
     }
 
     /**
@@ -53,7 +53,6 @@ public class Player implements Serializable {
     * @param cardType the type of development card to add
     */
     public void addDevelopmentCard(DevelopmentCardType cardType) {
-        //Chuanfeng Xiong
         this.developmentCards.add(new DevelopmentCard(cardType));
     }
 
@@ -239,6 +238,15 @@ public class Player implements Serializable {
     */
     public PlayerColor getPlayerColor() {
         return this.color;
+    }
+
+    public void addThisPlayersResources(ArrayList<Tuple<ResourceCard, PlayerColor>> list) {
+        // TODO Implement this and update GUI
+        for (Tuple<ResourceCard,PlayerColor> tuple : list) {
+            if (tuple.k.equals(color)) {
+                addResourceCard(tuple.t);
+            }
+        }
     }
 
     /**

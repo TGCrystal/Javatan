@@ -393,7 +393,6 @@ public class Board implements Serializable {
                 if (tiles[i][j] == null)
                     continue;
                 String color = getHexColorFromType(tiles[i][j].getType());
-                System.out.println("Trying to set " + i + "," + j + " to " + color);
                 GUI.setColorOfHexTile(i, j, color);
             }
         }
