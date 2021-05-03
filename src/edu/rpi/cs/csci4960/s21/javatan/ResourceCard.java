@@ -13,10 +13,20 @@ enum ResourceCardType {BRICK, LUMBER, ORE, GRAIN, WOOL};
 public class ResourceCard extends Card {
     private final ResourceCardType type;
 
+    /**
+    * Sole constructor for the ResourceCard class
+    *
+    * @param type the type of resource card that this object will be
+    */
     public ResourceCard(ResourceCardType type) {
         this.type = type;
     }
 
+    /**
+    * Gets this resource card's type
+    *
+    * @return the type of resource card this resource card is
+    */
     public ResourceCardType getType() {
         return this.type;
     }

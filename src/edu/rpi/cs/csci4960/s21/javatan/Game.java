@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 /**
 * Used to keep track of and manage the current game
+*
 * @author Chuanfeng Xiong
 * @author Chris Lamberston
 * @author Ruben McWilliams
@@ -26,6 +27,11 @@ public class Game {
         currentPlayerIndex = 0;
     }
 
+    /**
+    * Gets a reference to the internal Board representation
+    *
+    * @return the internal Board object used to represent the board
+    */
     public Board getBoard()
     {
         return this.board;
@@ -48,6 +54,14 @@ public class Game {
     }
 
     private Boolean firstHouse = true;
+    /**
+    * Assigns a settlement to a player
+    *
+    * @param color the player's color to assign to the settlement
+    * @param x the x position of the settlement
+    * @param y the y position of the settlement
+    * @return true if the building was successfully placed, false otherwise
+    */
     public Boolean assignSettlement(PlayerColor color, int x, int y)
     {
         if (firstHouse)

@@ -5,10 +5,19 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Random;
 import java.util.Scanner;
+
+/**
+* The server used to manage the game and send state updates to the clients
+*
+* @author Chuanfeng Xiong
+* @author Chris Lamberston
+* @author Ruben McWilliams
+* @author Trevor Crystal
+*/
 public class Server {
     private int port;
 
-    public void server() throws IOException {
+    public void server() throws IOException { // Is this supposed to be the constructor
         //Create a server
         System.out.println("Server start; wait for a client");
         PrintWriter out = null;

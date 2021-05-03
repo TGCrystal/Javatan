@@ -42,10 +42,24 @@ public class Board {
         robberColumn = -1;
     }
 
+    /**
+    * Used to get a road at a certain position
+    *
+    * @param x the x position of the road
+    * @param y the y position of the road
+    * @return the Road at the provided position
+    */
     public Road getRoad(int x, int y) {
         return roads[x][y];
     }
 
+    /**
+    * Used to get a building at a certain position
+    *
+    * @param x the x position of the building
+    * @param y the y position of the building
+    * @return the Building at the provided position
+    */
     public Building getBuilding(int x, int y) {
         return buildings[x][y];
     }

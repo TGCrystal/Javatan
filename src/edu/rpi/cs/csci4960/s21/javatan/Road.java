@@ -2,6 +2,15 @@ package edu.rpi.cs.csci4960.s21.javatan;
 
 enum PortType {NONE, BRICK, LUMBER, ORE, GRAIN, WOOL, THREE};
 
+/**
+* A class used to store information about a road. The owner of the road and whether there
+* is a port connected to it is stored.
+*
+* @author Chuanfeng Xiong
+* @author Chris Lamberston
+* @author Ruben McWilliams
+* @author Trevor Crystal
+*/
 public class Road {
     private PlayerColor ownership;
     private final PortType port;

@@ -1,12 +1,28 @@
 package edu.rpi.cs.csci4960.s21.javatan;
+
 import java.net.*;
 import java.io.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
+
+/**
+* The client used to send and receive game info to and from the server
+*
+* @author Chuanfeng Xiong
+* @author Chris Lamberston
+* @author Ruben McWilliams
+* @author Trevor Crystal
+*/
 public class Client {
+    /**
+    * The server to connect to, 127.0.0.1 by default
+    */
     public String serverName = "127.0.0.1";
+    /**
+    * The port to connect to, 1000 by default
+    */
     public int port = 1000;
     Socket client = null;
     Scanner getKey = null;
@@ -17,6 +33,11 @@ public class Client {
     private Player player;
     private PlayerColor thisPlayerColor;
 
+    /**
+    * The sole constructor for the client. It creates a new internal representation of the board
+    * and player, and also defaults the player color to blue (which should be overriden after 
+    * the client connects to the server).
+    */
     public Client() {
         localBoardCopy = new Board();
         // TODO: TEMP, this should come from server
@@ -24,6 +45,11 @@ public class Client {
         player = new Player(thisPlayerColor);
     }
 
+    /**
+    * Attempts to connect to the server with the serverName and port stored by the class
+    *
+    * @throws IOException if an I/O error occurs when creating the socket
+    */
     public void connect() throws IOException {
         try {
             client = new Socket(serverName, port);
@@ -44,9 +70,8 @@ public class Client {
                     break;
                 }
             }
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (IOException e) {
+            throw e;
         } finally {
             getKey.close();
             getServer.close();
@@ -54,19 +79,19 @@ public class Client {
             client.close();
         }
     }
- 
+
     private String playerColorToStringColor(PlayerColor color) {
         switch (color) {
-            case RED:
-                return "red";
-            case ORANGE:
-                return "orange";
-            case WHITE:
-                return "white";
-            case BLUE:
-                return "blue";
-            default:
-                return "black";
+        case RED:
+            return "red";
+        case ORANGE:
+            return "orange";
+        case WHITE:
+            return "white";
+        case BLUE:
+            return "blue";
+        default:
+            return "black";
         }
     }
 
@@ -83,10 +108,10 @@ public class Client {
             addThisPlayerSettlement(row, col);
         if (building.getOwner() == thisPlayerColor)
             upgradeThisPlayerSettlementToCity(row, col);
-    } 
+    }
 
     /**
-     * Handles this player clicking a road. Buys the road if it's currently unowned, has a 
+     * Handles this player clicking a road. Buys the road if it's currently unowned, has a
      * valid placement, and this player has the resources.
      * @param row Row of settlement in question
      * @param col Col of settlement in question
@@ -98,20 +123,20 @@ public class Client {
     }
 
     //#region Private helpers to manage roads and settlements
-    
+
     /**
      * Adds the road of another player
      * @param row Row of road in question
      * @param col Col of road in question
-     * @param color Player to give the road to 
+     * @param color Player to give the road to
      */
     private void addOtherPlayerRoad(int row, int col, PlayerColor color) {
         if (localBoardCopy.addRoad(row, col, color))
             GUI.setColorOfRoadGUI(row, col, playerColorToStringColor(color));
     }
-    
+
     /**
-     * Checks to see if this player can buy the road. If so, buys it and then 
+     * Checks to see if this player can buy the road. If so, buys it and then
      * sends this to server.
      * @param row Row of road in question
      * @param col Col of road in question
@@ -125,10 +150,10 @@ public class Client {
     }
 
     /**
-     * Adds the settlement of another player. 
+     * Adds the settlement of another player.
      * @param row Row of settlement in question
      * @param col Col of settlement in question
-     * @param color Player to give the settlement to 
+     * @param color Player to give the settlement to
      */
     private void addOtherPlayerSettlement(int row, int col, PlayerColor color) {
         if (localBoardCopy.addBuilding(row, col, color))
@@ -147,14 +172,14 @@ public class Client {
             player.tryBuySettlement(true);
             GUI.setColorOfSettlement(row, col, playerColorToStringColor(thisPlayerColor));
         }
-            
+
     }
 
     /**
      * Upgrades the settlement of another player to a city.
      * @param row Row of the settlement in question
      * @param col Col of the settlement in question
-     * @param color Color of the player 
+     * @param color Color of the player
      */
     private void upgradeOtherPlayerSettlementToCity(int row, int col, PlayerColor color) {
         if (localBoardCopy.upgradeBuilding(row, col)) {

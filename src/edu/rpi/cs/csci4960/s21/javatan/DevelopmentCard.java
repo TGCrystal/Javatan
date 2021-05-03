@@ -13,10 +13,20 @@ enum DevelopmentCardType {KNIGHT, PROGRESS, VICTORY};
 public class DevelopmentCard extends Card {
     private final DevelopmentCardType type;
 
+    /**
+    * Sole constructor for the DevelopmentCard class
+    *
+    * @param type the type of development card that this object will be
+    */
     public DevelopmentCard(DevelopmentCardType type) {
         this.type = type;
     }
 
+    /**
+    * Gets this development card's type
+    *
+    * @return the type of development card this development card is
+    */
     public DevelopmentCardType getType() {
         return this.type;
     }
