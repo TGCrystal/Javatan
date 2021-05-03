@@ -1,2 +1,0 @@
-./LinBuild.sh
-./LinTest.sh
