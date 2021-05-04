@@ -109,6 +109,12 @@ public class Settlement {
 		if (type.equals(Type.HOUSE)) type = Type.CITY;
 	}
 
+	/**
+	* Makes a house of the given color
+	* (aka assigns this building as a settlement belonging to given color)
+	*
+	* @param color the owner of the house
+	*/
 	public void makeAHouse(String color) {
 		theRoot.getChildren().remove(placeSettlementBtn);
 		Image anImage = null;
@@ -128,6 +134,11 @@ public class Settlement {
 		this.placeButton();
 	}
 
+	/**
+	* Makes a city of the given color
+	*
+	* @param color the owner of the city
+	*/
 	public void makeCity(String color) {
 		theRoot.getChildren().remove(placeSettlementBtn);
 		theRoot.getChildren().remove(houseImg);

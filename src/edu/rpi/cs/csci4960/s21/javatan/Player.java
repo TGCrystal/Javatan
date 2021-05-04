@@ -15,11 +15,29 @@ import java.util.Random;
 * @author Trevor Crystal
 */
 public class Player implements Serializable {
+    /**
+    * used to keep track of all of a player's resource cards
+    */
     private final ArrayList<ResourceCard> resourceCards;
+    /**
+    * used to keep track of all of a player's development cards
+    */
     private final ArrayList<DevelopmentCard> developmentCards;
+    /**
+    * true if the player has the longest road special card, false otherwise
+    */
     private boolean hasLongestRoad;
+    /**
+    * true if the player has the largest army special card, false otherwise
+    */
     private boolean hasLargestArmy;
+    /**
+    * the number of victory points this player has
+    */
     private int victoryPoints;
+    /**
+    * the color of this players pieces
+    */
     private final PlayerColor color;
 
     /**
@@ -240,6 +258,12 @@ public class Player implements Serializable {
         return this.color;
     }
 
+    /**
+    * Adds cards to the player's hand
+    *
+    * @param list a list of resource cards and the players they go to, only the cards that belong
+    *   to this player are added to the hand
+    */
     public void addThisPlayersResources(ArrayList<Tuple<ResourceCard, PlayerColor>> list) {
         // TODO Implement this and update GUI
         for (Tuple<ResourceCard,PlayerColor> tuple : list) {

@@ -15,7 +15,13 @@ enum PortType {NONE, BRICK, LUMBER, ORE, GRAIN, WOOL, THREE};
 * @author Trevor Crystal
 */
 public class Road implements Serializable {
+    /**
+    * Represents the owner of this road, PlayerColor.NONE if not yet built
+    */
     private PlayerColor ownership;
+    /**
+    * Represents the type of port that goes along this road, PortType.NONE for none
+    */
     private final PortType port;
 
     /**
