@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.scene.paint.Color;
 
 /**
 * The core GUI class used to launch the Client program
@@ -32,6 +33,8 @@ public class GUI extends Application {
 	private static ArrayList<ArrayList<Polygon>> polygons = new ArrayList<>();
 	private static ArrayList<ArrayList<ArrayList<Double>>> tileCenters = new ArrayList<>();
 	private static ArrayList<ArrayList<RoadGUI>> roads = new ArrayList<>();
+	private static ArrayList<ArrayList<Text>> hexLabels = new ArrayList<>();
+
 
 	private static Text lumberNumber;
 	private static Text grainNumber;
@@ -49,6 +52,14 @@ public class GUI extends Application {
 			return tileCenters.get(x).get(y);
 		} else {
 			return tileCenters.get(x).get(y - 1);
+		}
+	}
+	
+	public static void setNumOfHex(int x, int y, int num) {
+		if (x == 2) {
+			hexLabels.get(x).get(y).setText(String.valueOf(num));
+		} else {
+			hexLabels.get(x).get(y-1).setText(String.valueOf(num));
 		}
 	}
 
@@ -1559,7 +1570,19 @@ public class GUI extends Application {
 		setBrickNum(0);
 		setOreNum(0);
 
-
+		for (int x = 0; x < tileCenters.size(); x++) {
+			ArrayList<Text> temp = new ArrayList<>();
+			for (int y = 0; y < tileCenters.get(x).size(); y++) {
+				Text someText = new Text();
+				someText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50)); 
+				someText.setFill(Color.WHITE);
+				someText.setX(tileCenters.get(x).get(y).get(0) - 15);
+            			someText.setY(tileCenters.get(x).get(y).get(1) + 15);
+				root.getChildren().add(someText);
+				temp.add(someText);
+			}
+			hexLabels.add(temp);
+		}
 
 
 		//tests
