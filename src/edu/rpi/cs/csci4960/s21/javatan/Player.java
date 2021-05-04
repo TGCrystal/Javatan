@@ -68,7 +68,7 @@ public class Player implements Serializable {
     */
     public void addResourceCard(ResourceCard card) {
         this.resourceCards.add(card);
-        if (useGui) GUI.incrementResourceNum(card.getType());
+        if (useGui) GUI.changeResourceNum(card.getType(), 1);
     }
 
     /**
@@ -151,6 +151,7 @@ public class Player implements Serializable {
     public boolean removeResourceCard(ResourceCardType cardType) {
         for (int i = 0; i < resourceCards.size(); i++) {
             if (resourceCards.get(i).getType() == cardType) {
+                if (useGui) GUI.changeResourceNum(resourceCards.get(i).getType(), -1);
                 resourceCards.remove(i);
                 return true;
             }

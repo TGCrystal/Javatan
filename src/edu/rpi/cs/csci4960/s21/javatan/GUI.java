@@ -115,7 +115,7 @@ public class GUI extends Application {
 	*
 	* @param type the type to increment the resource num of
 	*/
-	public static void incrementResourceNum(ResourceCardType type) {
+	public static void changeResourceNum(ResourceCardType type, int amount) {
 		Text textField;
 		switch (type) {
 			case BRICK:
@@ -137,7 +137,7 @@ public class GUI extends Application {
 				return;
 		}
 		int curNum = Integer.parseInt(textField.getText());
-		curNum++;
+		curNum += amount;
 		textField.setText(Integer.toString(curNum));
 	}
 

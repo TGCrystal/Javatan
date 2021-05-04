@@ -64,7 +64,7 @@ public class RoadGUI {
 	* what to do when the road is clicked
 	*/
 	public void whenClicked() {
-		System.out.println("Do this when clicked");
+		GUI.client.handleThisPlayerClickingRoad(x, y);
 	}
 
 	/**
