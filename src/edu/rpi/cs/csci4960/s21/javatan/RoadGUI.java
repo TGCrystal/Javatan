@@ -23,6 +23,8 @@ public class RoadGUI {
 
 	private Polygon thePolygon;
 	private Group theRoot;
+	public int x;
+	public int y;
 	
 
 	/**
