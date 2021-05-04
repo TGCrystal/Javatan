@@ -39,6 +39,9 @@ public class Player implements Serializable {
     * the color of this players pieces
     */
     private final PlayerColor color;
+    /**
+    * true if this player is associated with a gui
+    */
     private boolean useGui;
 
     /**
@@ -46,6 +49,7 @@ public class Player implements Serializable {
     * initializes victoryPoints to 0
     *
     * @param color this player's color
+    * @param useGui true if this player is managed by a GUI, false otherwise
     */
     public Player(PlayerColor color, boolean useGui) {
         this.color = color;
