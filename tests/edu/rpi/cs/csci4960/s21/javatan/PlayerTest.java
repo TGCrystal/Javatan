@@ -23,17 +23,17 @@ public class PlayerTest {
     public void resourceCardTest() {
         Player player = new Player(PlayerColor.RED);
         assertEquals(0, player.getNumResourceCards());
-        player.addResourceCard(ResourceCardType.BRICK);
+        player.addResourceCard(new ResourceCard(ResourceCardType.BRICK));
         assertEquals(1, player.getNumResourceCards());
-        player.addResourceCard(ResourceCardType.LUMBER);
+        player.addResourceCard(new ResourceCard(ResourceCardType.LUMBER));
         assertEquals(2, player.getNumResourceCards());
-        player.addResourceCard(ResourceCardType.ORE);
+        player.addResourceCard(new ResourceCard(ResourceCardType.ORE));
         assertEquals(3, player.getNumResourceCards());
-        player.addResourceCard(ResourceCardType.GRAIN);
+        player.addResourceCard(new ResourceCard(ResourceCardType.GRAIN));
         assertEquals(4, player.getNumResourceCards());
-        player.addResourceCard(ResourceCardType.WOOL);
+        player.addResourceCard(new ResourceCard(ResourceCardType.WOOL));
         assertEquals(5, player.getNumResourceCards());
-        player.addResourceCard(ResourceCardType.BRICK);
+        player.addResourceCard(new ResourceCard(ResourceCardType.BRICK));
         assertEquals(6, player.getNumResourceCards());
 
         assertTrue(player.removeResourceCard(ResourceCardType.BRICK));
@@ -145,12 +145,12 @@ public class PlayerTest {
     @Test
     public void removeRandomCardTest() {
         Player player = new Player(PlayerColor.RED);
-        player.addResourceCard(ResourceCardType.BRICK);
-        player.addResourceCard(ResourceCardType.LUMBER);
-        player.addResourceCard(ResourceCardType.ORE);
-        player.addResourceCard(ResourceCardType.GRAIN);
-        player.addResourceCard(ResourceCardType.WOOL);
-        player.addResourceCard(ResourceCardType.BRICK);
+        player.addResourceCard(new ResourceCard(ResourceCardType.BRICK));
+        player.addResourceCard(new ResourceCard(ResourceCardType.LUMBER));
+        player.addResourceCard(new ResourceCard(ResourceCardType.ORE));
+        player.addResourceCard(new ResourceCard(ResourceCardType.GRAIN));
+        player.addResourceCard(new ResourceCard(ResourceCardType.WOOL));
+        player.addResourceCard(new ResourceCard(ResourceCardType.BRICK));
         boolean brick1 = false;
         boolean brick2 = false;
         boolean lumber = false;

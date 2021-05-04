@@ -58,7 +58,7 @@ public class Player implements Serializable {
     /**
     * Adds a given progress card to the player's hand
     *
-    * @param cardType the type of progress card to add
+    * @param card the type of progress card to add
     */
     public void addResourceCard(ResourceCard card) {
         this.resourceCards.add(card);

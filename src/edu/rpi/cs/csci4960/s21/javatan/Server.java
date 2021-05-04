@@ -16,11 +16,11 @@ import java.util.concurrent.Executors;
  *Server receive connection request and store information of every client, then keep listening
  * and sending message(message.java) to communicate with client
  * See MessageReceiveListener.java for more detail
-*
-* @author Chuanfeng Xiong
-* @author Chris Lamberston
-* @author Ruben McWilliams
-* @author Trevor Crystal
+ *
+ * @author Chuanfeng Xiong
+ * @author Chris Lamberston
+ * @author Ruben McWilliams
+ * @author Trevor Crystal
  */
 public class Server extends Thread {
 
@@ -32,12 +32,24 @@ public class Server extends Thread {
     //A new function to manage thread pool
     ExecutorService executorService;
 
+    /**
+    * The sole constructor for Server
+    *
+    * @param gui the gui to associate with this server instance
+    * @param game the game instance to associate with this server instance
+    */
     public Server(GUI gui, Game game) {
         this.gui = gui;
         this.game = game;
         executorService = Executors.newCachedThreadPool();
     }
 
+    /**
+    * Starts the server
+    *
+    * @param ip the ip for the server to use
+    * @param port the port for the server to use
+    */
     public void startServer(String ip, int port) {
         try {
             this.serverSocket = new ServerSocket(port, 0, InetAddress.getByName(ip));
@@ -48,6 +60,9 @@ public class Server extends Thread {
         }
     }
 
+    /**
+    * Run the run
+    */
     public void run() {
         clients = new HashMap<>();
         int count = 0;
@@ -88,7 +103,7 @@ public class Server extends Thread {
                 out.flush();
 
                 //Start a new thread, which receive and unpack message sent from each client
-                MessageReceiveListener receive = new MessageReceiveListener(this,clientInfo, this.gui, this.game);
+                MessageReceiveListener receive = new MessageReceiveListener(this, clientInfo, this.gui, this.game);
                 executorService.execute(receive);
 
                 count++;
@@ -106,6 +121,7 @@ public class Server extends Thread {
      * Send out message to every client if no player color is specified
      * Otherwise just send it to a certain Client
      * @param msg message that needs to be sent to client
+     * @return true if the message sends without error, false otherwise
      */
     public boolean
     sendMessage(Message msg) {
@@ -133,7 +149,9 @@ public class Server extends Thread {
         return false;
     }
 
-
+    /**
+    * Stops the server
+    */
     public void stopServer() {
         this.stop = stop;
     }

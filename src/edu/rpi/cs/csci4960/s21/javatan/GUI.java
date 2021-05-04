@@ -55,6 +55,13 @@ public class GUI extends Application {
 		}
 	}
 	
+	/**
+	* Assigns a number to a tile
+	*
+	* @param x the x index of the tile
+	* @param y the y index of the tile
+	* @param num the num to assign to the tile
+	*/
 	public static void setNumOfHex(int x, int y, int num) {
 		if (x == 2) {
 			hexLabels.get(x).get(y).setText(String.valueOf(num));
@@ -103,6 +110,11 @@ public class GUI extends Application {
 		}
 	}
 
+	/**
+	* Increments the resource number of a given ResourceCardType
+	*
+	* @param type the type to increment the resource num of
+	*/
 	public static void incrementResourceNum(ResourceCardType type) {
 		Text textField;
 		switch (type) {
@@ -149,6 +161,13 @@ public class GUI extends Application {
 		oreNumber.setText(String.valueOf(num));
 	}
 
+	/**
+	* Sets the color of a hex tile
+	*
+	* @param x the x index of the tile
+	* @param y the y index of the tile
+	* @param color the color to set the tile to
+	*/
 	public static void setColorOfHexTile(int x, int y, String color) {
 		if (color.equals("darkgreen")) {
 			getHexTile(x, y).setFill(javafx.scene.paint.Color.DARKGREEN);

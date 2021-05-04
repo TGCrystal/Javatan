@@ -127,7 +127,7 @@ public class Message implements Serializable {
     /**
     * Sets the current player
     *
-    * @param currecntPlayer the current player
+    * @param currentPlayer the current player
     */
     public void setCurrentPlayer(PlayerColor currentPlayer) {
         this.currentPlayer = currentPlayer;

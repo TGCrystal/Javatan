@@ -30,6 +30,9 @@ public class Client extends Thread {
     private Boolean hasFreeSettlement = true;
     private Boolean hasFreeRoad = true;
 
+    /**
+    * Sole constructor for Client, sets the players color to BLUE and creates a new Board instance
+    */
     public Client() {
         super();
         localBoardCopy = new Board();
@@ -39,6 +42,9 @@ public class Client extends Thread {
 
     /**
     * Attempts to connect to the server with the serverName and port stored by the class
+    *
+    * @param ip the ip of the server to connect to
+    * @param port the port of the server to connect to
     */
     public void connect(String ip, int port) {
         try {
@@ -58,10 +64,20 @@ public class Client extends Thread {
         }
     }
 
+    /**
+    * Gets the player associated with this client
+    *
+    * @return the player associated with this client
+    */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+    * Sets the player to associate with this client
+    *
+    * @param player the player to associate with this client
+    */
     public void setPlayer(Player player) {
         this.player = player;
     }
@@ -133,9 +149,12 @@ public class Client extends Thread {
             setThisPlayerRoad(row, col);
     }
 
+    /**
+    * Rolls the dice, sends the result to the server, and receives the results to add resources
+    */
     public void rollDiceAndDistributeResources() {
         Random random = new Random();
-        int roll = random.nextInt(7);
+        int roll = random.nextInt(12)+1; //Dice sum can be between 2 and 12, inclusive
         // TODO: Send roll to server
         ArrayList<Tuple<ResourceCard, PlayerColor>> list = 
             localBoardCopy.processTurn(roll);
@@ -232,6 +251,12 @@ public class Client extends Thread {
     }
     //#endregion
 
+    /**
+    * Sends a message
+    *
+    * @param msg the Message to send
+    * @return true if the message is successfully sent, false otherwise
+    */
     public boolean sendMessage(Message msg) {
         try {
             out.writeObject(msg);

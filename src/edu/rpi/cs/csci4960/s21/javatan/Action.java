@@ -58,6 +58,8 @@ public class Action implements Serializable {
 
     /**
     * Gets the action code associated with this Action
+    *
+    * @return the action code associated with this action
     */
     public String getActionCode() {
         return actionCode;
