@@ -33,7 +33,28 @@ public class RoadGUI {
 	public RoadGUI(Group root, Polygon polygon) {
 		theRoot = root;
 		thePolygon = polygon;
-		theRoot.getChildren().add(polygon);
+	}
+	
+	/**
+	* make the road visible on the board
+	*/
+	public void makeVisible() {
+		theRoot.getChildren().add(thePolygon);
+		thePolygon.setOnMouseClicked(mouseEvent -> whenClicked());
+	}
+	
+	/**
+	* remove the road from the board
+	*/
+	public void remove() {
+		theRoot.getChildren().remove(thePolygon);
+	}
+	
+	/**
+	* what to do when the road is clicked
+	*/
+	public void whenClicked() {
+		System.out.println("Do this when clicked");
 	}
 
 	/**
