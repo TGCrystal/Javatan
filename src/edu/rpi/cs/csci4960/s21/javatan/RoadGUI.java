@@ -23,6 +23,7 @@ public class RoadGUI {
 
 	private Polygon thePolygon;
 	private Group theRoot;
+	
 
 	/**
 	* The sole constructor for the RoadGUI class
@@ -33,6 +34,7 @@ public class RoadGUI {
 	public RoadGUI(Group root, Polygon polygon) {
 		theRoot = root;
 		thePolygon = polygon;
+		makeVisible();
 	}
 	
 	/**

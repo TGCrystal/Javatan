@@ -82,7 +82,7 @@ public class Server extends Thread {
                 /**
                  * Get information of clients and keep them
                  */
-                Player player = new Player(game.addPlayer());
+                Player player = new Player(game.addPlayer(), true);
                 ClientInfo clientInfo = new ClientInfo();
                 clientInfo.setPlayer(player);
                 clientInfo.setClient(client);

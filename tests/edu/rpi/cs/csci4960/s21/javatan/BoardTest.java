@@ -10,28 +10,28 @@ import org.junit.Test;
 public class BoardTest {
     @Test
     public void addRoadErrorNoConnection() {
-        Board board = new Board();
+        Board board = new Board(false);
         assertFalse("Fail adding a road not connected to anything",
             board.addRoad(4, 5, PlayerColor.BLUE));
     }
 
     @Test
     public void addBuildingErrorNoConnection() {
-        Board board = new Board();
+        Board board = new Board(false);
         assertFalse("Fail adding a building not connected to anything",
             board.addBuilding(1, 5, PlayerColor.BLUE));
     }
 
     @Test
     public void addBuildingInitSuccessNoConnection() {
-        Board board = new Board();
+        Board board = new Board(false);
         assertTrue("Succeed adding a building w/ init not connected to anything",
             board.addBuildingInit(1, 5, PlayerColor.BLUE));
     }
 
     @Test
     public void addRoadSuccessful() {
-        Board board = new Board();
+        Board board = new Board(false);
         assertTrue("Add initial building", 
             board.addBuildingInit(2, 5, PlayerColor.RED));
         assertTrue("Add road next to initial building succeeds", 
@@ -42,7 +42,7 @@ public class BoardTest {
 
     @Test
     public void addRoadWrongColor() {
-        Board board = new Board();
+        Board board = new Board(false);
         assertTrue("Add initial building", 
             board.addBuildingInit(2, 5, PlayerColor.RED));
         assertFalse("Add wrong color building fails", 
@@ -51,7 +51,7 @@ public class BoardTest {
 
     @Test
     public void processTurnSuccess() {
-        Board board = new Board();
+        Board board = new Board(false);
 
         assertTrue("Add blue building",
             board.addBuildingInit(1, 3, PlayerColor.BLUE));

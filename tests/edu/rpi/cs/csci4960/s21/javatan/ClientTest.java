@@ -17,7 +17,7 @@ public class ClientTest {
         InetAddress addr = InetAddress.getLocalHost();
         ip = addr.getHostAddress();
 
-        server = new Server(new GUI(), new Game());
+        server = new Server(new GUI(), new Game(false));
 
         server.startServer(ip, 9999);
     }

@@ -37,6 +37,10 @@ public class Board implements Serializable {
     */
     private final int numRows = 5;
     /**
+     * Whether to update the GUI or not. Used for testing.
+     */
+    private Boolean useGui;
+    /**
     * The number of columns used in the internal board representation
     */
     private final int numCols = 5;
@@ -44,12 +48,14 @@ public class Board implements Serializable {
 
     /**
     * Initializes the board, for now just default to main one found in manual
+    * @param useGui whether to use the GUI class or not
     */
-    public Board() {
+    public Board(boolean useGui) {
         tiles = new Tile[numRows][numCols];
         roads = new Road[numRows*2+2][numCols*2+2];
         buildings = new Building[numRows*2+2][numCols*2+2];
-
+        
+        this.useGui = useGui;
         setupDefaultBoardConfiguration();
 
         robberRow = -1;
@@ -397,7 +403,9 @@ public class Board implements Serializable {
             }
         }
 
-        setColorsOfHexesInGui();
+        if (useGui) {
+            setColorsOfHexesInGui();
+        }
     }
 
     private void setColorsOfHexesInGui() {

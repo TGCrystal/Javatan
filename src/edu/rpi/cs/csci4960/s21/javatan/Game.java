@@ -17,14 +17,18 @@ public class Game {
     private PlayerColor largestArmy;
     private final ArrayList<PlayerColor> players;
     private int currentPlayerIndex;
+    Boolean useGui;
+    private Boolean firstHouse = true;
 
     /**
     * Constructor for the game, initializes the board, does not add any players
+    * @param useGui whether to use the GUI class or not
     */
-    public Game() {
-        board = new Board();
+    public Game(Boolean useGui) {
+        board = new Board(useGui);
         players = new ArrayList<PlayerColor>();
         currentPlayerIndex = 0;
+        this.useGui = useGui;
     }
 
     /**
@@ -53,7 +57,6 @@ public class Game {
         return null;
     }
 
-    private Boolean firstHouse = true;
     /**
     * Assigns a settlement to a player
     *

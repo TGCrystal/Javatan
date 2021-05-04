@@ -9,10 +9,10 @@ import org.junit.Test;
 public class PlayerTest {
     @Test
     public void colorTest() {
-        Player playerRed = new Player(PlayerColor.RED);
-        Player playerOrange = new Player(PlayerColor.ORANGE);
-        Player playerWhite = new Player(PlayerColor.WHITE);
-        Player playerBlue = new Player(PlayerColor.BLUE);
+        Player playerRed = new Player(PlayerColor.RED, false);
+        Player playerOrange = new Player(PlayerColor.ORANGE, false);
+        Player playerWhite = new Player(PlayerColor.WHITE, false);
+        Player playerBlue = new Player(PlayerColor.BLUE, false);
         assertEquals(PlayerColor.RED, playerRed.getPlayerColor());
         assertEquals(PlayerColor.ORANGE, playerOrange.getPlayerColor());
         assertEquals(PlayerColor.WHITE, playerWhite.getPlayerColor());
@@ -21,7 +21,7 @@ public class PlayerTest {
 
     @Test
     public void resourceCardTest() {
-        Player player = new Player(PlayerColor.RED);
+        Player player = new Player(PlayerColor.RED, false);
         assertEquals(0, player.getNumResourceCards());
         player.addResourceCard(new ResourceCard(ResourceCardType.BRICK));
         assertEquals(1, player.getNumResourceCards());
@@ -62,7 +62,7 @@ public class PlayerTest {
 
     @Test
     public void developmentCardTest() {
-        Player player = new Player(PlayerColor.RED);
+        Player player = new Player(PlayerColor.RED, false);
         assertEquals(0, player.getNumDevelopmentCards());
         player.addDevelopmentCard(DevelopmentCardType.KNIGHT);
         assertEquals(1, player.getNumDevelopmentCards());
@@ -93,7 +93,7 @@ public class PlayerTest {
 
     @Test
     public void basicVictoryPointsTest() {
-        Player player = new Player(PlayerColor.RED);
+        Player player = new Player(PlayerColor.RED, false);
         assertEquals(0, player.getVictoryPoints());
         player.addVictoryPoints(2);
         assertEquals(2, player.getVictoryPoints());
@@ -103,7 +103,7 @@ public class PlayerTest {
 
     @Test
     public void specialCardsTest() {
-        Player player = new Player(PlayerColor.RED);
+        Player player = new Player(PlayerColor.RED, false);
         assertEquals(0, player.getVictoryPoints());
         assertFalse(player.hasLongestRoad());
         assertFalse(player.hasLargestArmy());
@@ -144,7 +144,7 @@ public class PlayerTest {
 
     @Test
     public void removeRandomCardTest() {
-        Player player = new Player(PlayerColor.RED);
+        Player player = new Player(PlayerColor.RED, false);
         player.addResourceCard(new ResourceCard(ResourceCardType.BRICK));
         player.addResourceCard(new ResourceCard(ResourceCardType.LUMBER));
         player.addResourceCard(new ResourceCard(ResourceCardType.ORE));

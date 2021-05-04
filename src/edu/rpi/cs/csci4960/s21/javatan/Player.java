@@ -39,6 +39,7 @@ public class Player implements Serializable {
     * the color of this players pieces
     */
     private final PlayerColor color;
+    private boolean useGui;
 
     /**
     * The sole constructor for the player class, takes in the color to assign to this player,
@@ -46,13 +47,14 @@ public class Player implements Serializable {
     *
     * @param color this player's color
     */
-    public Player(PlayerColor color) {
+    public Player(PlayerColor color, boolean useGui) {
         this.color = color;
         this.hasLargestArmy = false;
         this.hasLongestRoad = false;
         this.victoryPoints = 0;
         this.resourceCards = new ArrayList<ResourceCard>();
         this.developmentCards = new ArrayList<DevelopmentCard>();
+        this.useGui = useGui;
     }
 
     /**
@@ -62,7 +64,7 @@ public class Player implements Serializable {
     */
     public void addResourceCard(ResourceCard card) {
         this.resourceCards.add(card);
-        GUI.incrementResourceNum(card.getType());
+        if (useGui) GUI.incrementResourceNum(card.getType());
     }
 
     /**

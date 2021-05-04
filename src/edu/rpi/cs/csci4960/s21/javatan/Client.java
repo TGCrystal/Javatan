@@ -35,9 +35,9 @@ public class Client extends Thread {
     */
     public Client() {
         super();
-        localBoardCopy = new Board();
+        localBoardCopy = new Board(true);
         thisPlayerColor = PlayerColor.BLUE;
-        player = new Player(thisPlayerColor);
+        player = new Player(thisPlayerColor, true);
     }
 
     /**

@@ -13,7 +13,7 @@ public class GameTest {
     @Test
     public void addPlayerWorks()
     {
-        Game game = new Game();
+        Game game = new Game(false);
         // Should be able to add 4 players, RED ORANGE WHITE BLUE
         ArrayList<PlayerColor> playerColors = new ArrayList<>();
         playerColors.add(game.addPlayer());
@@ -32,19 +32,19 @@ public class GameTest {
 
     @Test
     public void giveLongestRoadInvalidPlayerThrowsError() {
-        Game game = new Game();
+        Game game = new Game(false);
         assertThrows(IllegalArgumentException.class, () -> game.giveLongestRoad(PlayerColor.BLUE));
     }
 
     @Test
     public void giveLargestArmyInvalidPlayerThrowsError() {
-        Game game = new Game();
+        Game game = new Game(false);
         assertThrows(IllegalArgumentException.class, () -> game.giveLargestArmy(PlayerColor.BLUE));
     }
 
     @Test 
     public void getCurrentPlayerReturnsCurrentPlayer() {
-        Game game = new Game();
+        Game game = new Game(false);
         PlayerColor player1 = game.addPlayer();
         PlayerColor player2 = game.addPlayer();
 
