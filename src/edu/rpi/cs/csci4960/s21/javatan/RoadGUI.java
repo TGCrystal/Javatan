@@ -23,7 +23,13 @@ public class RoadGUI {
 
 	private Polygon thePolygon;
 	private Group theRoot;
+	/**
+	* x position of this road
+	*/
 	public int x;
+	/**
+	* y position of this road
+	*/
 	public int y;
 	
 
