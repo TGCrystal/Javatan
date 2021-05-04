@@ -11,8 +11,13 @@ import java.io.Serializable;
 * @author Trevor Crystal
 */
 public class Building implements Serializable {
+    /**
+    * Represents the owner of this building, PlayerColor.NONE if not yet built
+    */
     private PlayerColor ownership;
-    // True for settlement, false for city
+    /**
+    * true for settlement, false for city
+    */
     private boolean isSettlement;
 
     /**

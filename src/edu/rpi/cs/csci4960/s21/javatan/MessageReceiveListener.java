@@ -1,14 +1,19 @@
 package edu.rpi.cs.csci4960.s21.javatan;
 
-/**
- * Unpack message and complete request by using function from Game.java
- * Send update message out
- */
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.SocketException;
 
+/**
+ * Unpack message and complete request by using function from Game.java
+ * Send update message out
+ *
+ * @author Chuanfeng Xiong
+ * @author Chris Lamberston
+ * @author Ruben McWilliams
+ * @author Trevor Crystal
+ */
 public class MessageReceiveListener extends Thread {
 
     private ObjectInputStream in;
@@ -18,6 +23,14 @@ public class MessageReceiveListener extends Thread {
     private ClientInfo clientInfo;
     private Server server;
 
+    /**
+    * The sole constructor for MessageReceiveListener
+    *
+    * @param server the server for this message listener to use
+    * @param clientInfo info for the client this thread is connected to
+    * @param gui the gui to associate with this MessageReceiveListener
+    * @param game instance of game for this MessageReceiveListener to use
+    */
     public MessageReceiveListener(Server server,ClientInfo clientInfo, GUI gui, Game game) {
         this.clientInfo = clientInfo;
         this.gui = gui;

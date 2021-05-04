@@ -13,7 +13,13 @@ enum TileType {HILLS, FOREST, MOUNTAINS, FIELDS, PASTURE, DESERT};
 * @author Trevor Crystal
 */
 public class Tile implements Serializable {
+    /**
+    * The type of resource that this tile is
+    */
     private final TileType type;
+    /**
+    * The number that needs to be rolled for this tile to yield resources
+    */
     private final int num;
 
     /**

@@ -3,14 +3,6 @@ package edu.rpi.cs.csci4960.s21.javatan;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/** Tile indices
-           0,0    0,1    0,2
-        1,0    1,1    1,2    1,3
-    2,0    2,1    2,2     2,3   2,4
-        3,0    3,1    3,2    3,3
-           4,0    4,1    4,2
-*/
-
 /**
 * Used to keep track of information about the board
 *
@@ -20,12 +12,33 @@ import java.util.ArrayList;
 * @author Trevor Crystal
 */
 public class Board implements Serializable {
+    /**
+    * The tiles located on this board
+    */
     private Tile[][] tiles;
+    /**
+    * The roads located on this board
+    */
     private Road[][] roads;
+    /**
+    * The buildings (cities/settlements) on this board
+    */
     private Building[][] buildings;
+    /**
+    * The current row index of the robber
+    */
     private int robberRow;
+    /**
+    * The current column index of the robber
+    */
     private int robberColumn;
+    /**
+    * The number of rows used in the internal board representation
+    */
     private final int numRows = 5;
+    /**
+    * The number of columns used in the internal board representation
+    */
     private final int numCols = 5;
 
 
