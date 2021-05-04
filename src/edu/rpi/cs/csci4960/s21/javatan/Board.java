@@ -394,6 +394,8 @@ public class Board implements Serializable {
                     continue;
                 String color = getHexColorFromType(tiles[i][j].getType());
                 GUI.setColorOfHexTile(i, j, color);
+                if (!tiles[i][j].getType().equals(TileType.DESERT))
+                    GUI.setNumOfHex(i, j, tiles[i][j].getNum());
             }
         }
     }
