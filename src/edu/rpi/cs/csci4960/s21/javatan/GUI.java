@@ -114,6 +114,7 @@ public class GUI extends Application {
 	* Increments the resource number of a given ResourceCardType
 	*
 	* @param type the type to increment the resource num of
+	* @param amount the amount to increament the resource number by
 	*/
 	public static void changeResourceNum(ResourceCardType type, int amount) {
 		Text textField;
