@@ -1224,6 +1224,12 @@ public class GUI extends Application {
 		theFirstRow.add(road4);
 		theFirstRow.add(road5);
 		theFirstRow.add(road6);
+		
+		
+		for (int i = 0; i < theFirstRow.size(); i++) {
+			theFirstRow.get(i).x = 0;
+			theFirstRow.get(i).y = i + 2;
+		}
 
 		ArrayList<RoadGUI> theSecondRow = new ArrayList<>();
 
@@ -1231,6 +1237,11 @@ public class GUI extends Application {
 		theSecondRow.add(road8);
 		theSecondRow.add(road9);
 		theSecondRow.add(road10);
+		
+		for (int i = 0; i < theSecondRow.size(); i++) {
+			theSecondRow.get(i).x = 1;
+			theSecondRow.get(i).y = (i + 1) * 2;
+		}
 
 		ArrayList<RoadGUI> theThirdRow = new ArrayList<>();
 
@@ -1242,6 +1253,11 @@ public class GUI extends Application {
 		theThirdRow.add(road16);
 		theThirdRow.add(road17);
 		theThirdRow.add(road18);
+		
+		for (int i = 0; i < theThirdRow.size(); i++) {
+			theThirdRow.get(i).x = 2;
+			theThirdRow.get(i).y = i + 1;
+		}
 
 		ArrayList<RoadGUI> theFourthRow = new ArrayList<>();
 
@@ -1250,6 +1266,13 @@ public class GUI extends Application {
 		theFourthRow.add(road21);
 		theFourthRow.add(road22);
 		theFourthRow.add(road23);
+		
+				
+		for (int i = 0; i < theFourthRow.size(); i++) {
+			theFourthRow.get(i).x = 3;
+			theFourthRow.get(i).y = (i * 2) + 1;
+		}
+
 
 		ArrayList<RoadGUI> theFifthRow = new ArrayList<>();
 
@@ -1263,6 +1286,11 @@ public class GUI extends Application {
 		theFifthRow.add(road31);
 		theFifthRow.add(road32);
 		theFifthRow.add(road33);
+		
+		for (int i = 0; i < theFifthRow.size(); i++) {
+			theFifthRow.get(i).x = 4;
+			theFifthRow.get(i).y = i;
+		}
 
 		ArrayList<RoadGUI> theSixthRow = new ArrayList<>();
 
@@ -1272,6 +1300,11 @@ public class GUI extends Application {
 		theSixthRow.add(road37);
 		theSixthRow.add(road38);
 		theSixthRow.add(road39);
+		
+		for (int i = 0; i < theSixthRow.size(); i++) {
+			theSixthRow.get(i).x = 5;
+			theSixthRow.get(i).y = i * 2;
+		}
 
 		ArrayList<RoadGUI> theSeventhRow = new ArrayList<>();
 
@@ -1285,6 +1318,11 @@ public class GUI extends Application {
 		theSeventhRow.add(road47);
 		theSeventhRow.add(road48);
 		theSeventhRow.add(road49);
+		
+		for (int i = 0; i < theSeventhRow.size(); i++) {
+			theSeventhRow.get(i).x = 6;
+			theSeventhRow.get(i).y = i;
+		}
 
 		ArrayList<RoadGUI> theEigthRow = new ArrayList<>();
 
@@ -1293,6 +1331,11 @@ public class GUI extends Application {
 		theEigthRow.add(road52);
 		theEigthRow.add(road53);
 		theEigthRow.add(road54);
+		
+		for (int i = 0; i < theEigthRow.size(); i++) {
+			theEigthRow.get(i).x = 7;
+			theEigthRow.get(i).y = (i * 2) + 1;
+		}
 
 		ArrayList<RoadGUI> theNinthRow = new ArrayList<>();
 
@@ -1304,6 +1347,12 @@ public class GUI extends Application {
 		theNinthRow.add(road60);
 		theNinthRow.add(road61);
 		theNinthRow.add(road62);
+		
+		
+		for (int i = 0; i < theNinthRow.size(); i++) {
+			theNinthRow.get(i).x = 8;
+			theNinthRow.get(i).y = i + 1;
+		}
 
 		ArrayList<RoadGUI> theTenthRow = new ArrayList<>();
 
@@ -1311,6 +1360,11 @@ public class GUI extends Application {
 		theTenthRow.add(road64);
 		theTenthRow.add(road65);
 		theTenthRow.add(road66);
+		
+		for (int i = 0; i < theTenthRow.size(); i++) {
+			theTenthRow.get(i).x = 9;
+			theTenthRow.get(i).y = (i + 1) * 2;
+		}
 
 		ArrayList<RoadGUI> theEleventhRow = new ArrayList<>();
 
@@ -1320,6 +1374,11 @@ public class GUI extends Application {
 		theEleventhRow.add(road70);
 		theEleventhRow.add(road71);
 		theEleventhRow.add(road72);
+		
+		for (int i = 0; i < theEleventhRow.size(); i++) {
+			theEleventhRow.get(i).x = 10;
+			theEleventhRow.get(i).y = i + 2;
+		}
 
 		roads.add(theFirstRow);
 		roads.add(theSecondRow);
